@@ -1,3 +1,20 @@
+    /* ── IntersectionObserver — fade-in animations ──
+       Runs first, and only here do we hide the content: .js-animate is what
+       makes .fade-in transparent (see styles.css). If anything below this
+       block throws, the page still renders normally. */
+    document.documentElement.classList.add('js-animate');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target); /* animate once */
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
     /* ── Sticky nav scroll behaviour ── */
     const navbar  = document.getElementById('navbar');
     const navLinks = document.querySelectorAll('.nav-links a');
@@ -38,18 +55,6 @@
         navToggle.setAttribute('aria-expanded', 'false');
       });
     });
-
-    /* ── IntersectionObserver — fade-in animations ── */
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target); /* animate once */
-        }
-      });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
     /* ── Signup form — intercept and show inline confirmation ── */
     const signupForm    = document.getElementById('signupForm');
@@ -105,15 +110,29 @@
       });
     }
 
-    /* ── Notify me (shop) — local confirmation only, no form action needed ── */
+    /* ── Notify me (shop) — posts to Formspree like the other two forms ── */
     const notifyForm    = document.getElementById('notifyForm');
     const notifyConfirm = document.getElementById('notifyConfirm');
 
     if (notifyForm) {
-      notifyForm.addEventListener('submit', (e) => {
+      notifyForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        notifyForm.style.display = 'none';
-        notifyConfirm.style.display = 'block';
+        const data = new FormData(notifyForm);
+        try {
+          const res = await fetch(notifyForm.action, {
+            method: 'POST',
+            body: data,
+            headers: { Accept: 'application/json' }
+          });
+          if (res.ok) {
+            notifyForm.style.display = 'none';
+            notifyConfirm.style.display = 'block';
+          } else {
+            alert('Something went wrong — please try again or email us directly.');
+          }
+        } catch {
+          alert('Network error — please check your connection and try again.');
+        }
       });
     }
 
@@ -180,16 +199,19 @@
         }
 
         for (let d = 1; d <= daysInMonth; d++) {
-          const dateStr = toDateString(viewYear, viewMonth, d);
-          const cell = document.createElement('button');
-          cell.type = 'button';
+          const dateStr   = toDateString(viewYear, viewMonth, d);
+          const dayEvents = eventsByDate[dateStr];
+
+          /* Only days with events do anything, so only those are buttons —
+             otherwise a keyboard user tabs through the whole month. */
+          const cell = document.createElement(dayEvents ? 'button' : 'div');
           cell.className = 'calendar-day';
           cell.textContent = d;
 
           if (dateStr === todayStr) cell.classList.add('today');
 
-          const dayEvents = eventsByDate[dateStr];
           if (dayEvents) {
+            cell.type = 'button';
             cell.classList.add('has-event');
             cell.setAttribute('aria-label', `${d}: ${dayEvents.map(e => e.title).join(', ')}`);
             cell.addEventListener('click', () => {
