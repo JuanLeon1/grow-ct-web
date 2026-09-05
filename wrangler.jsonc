@@ -4,6 +4,11 @@
   // Preview: npx wrangler dev
   "name": "grow-ct-web",
   "compatibility_date": "2026-09-01",
+
+  // Pinned explicitly: these default to true, but `wrangler deploy` overrides
+  // dashboard toggles on every push, so keep the intent in the file.
+  "workers_dev": true,
+  "preview_urls": true,
   "assets": {
     "directory": "."
   }

@@ -13,7 +13,7 @@ styles.css        All styling. CSS custom properties at the top control the pale
 main.js           Nav behaviour, scroll animations, event calendar, form handling.
 assets/           logo.png, hero-produce.jpg, garden-farm.jpg
 _headers          Security + caching headers (Cloudflare).
-_redirects        www → apex redirect.
+_redirects        Path-level redirects. www → apex is a Cloudflare Redirect Rule, not here.
 robots.txt        Crawler rules.
 sitemap.xml       Sitemap for search engines.
 wrangler.jsonc    Cloudflare Workers deploy config.
@@ -49,7 +49,7 @@ deploys automatically and every pull request gets its own preview URL.
 
 These are placeholders in the current draft and must be replaced:
 
-- [ ] `_redirects` / `sitemap.xml` / `index.html` assume the domain is `grow-ct.org` — correct if that changes.
+- [ ] `sitemap.xml` / `index.html` assume the domain is `grow-ct.org` — correct if that changes.
 - [ ] **Formspree form IDs.** `index.html` contains `https://formspree.io/f/YOUR_FORM_ID`
       in two places (the signup form and the contact form). Both silently fail until
       replaced with real endpoint IDs from a Formspree account.

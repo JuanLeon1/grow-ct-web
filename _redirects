@@ -1,1 +1,8 @@
-https://www.grow-ct.org/*  https://grow-ct.org/:splat  301
+# Path-level redirects only. Sources must be relative paths — Cloudflare
+# rejects hostname sources at deploy time (error 100324).
+#
+# The www -> apex redirect is a zone-level Redirect Rule in the Cloudflare
+# dashboard (grow-ct.org -> Rules -> Redirect Rules), not a rule here.
+#
+# Example, for when a page moves:
+#   /fundraiser  /donate  301
