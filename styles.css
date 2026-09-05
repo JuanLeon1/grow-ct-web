@@ -29,7 +29,11 @@
 ============================================================ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { scroll-behavior: smooth; font-size: 16px; }
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  scroll-padding-top: 80px; /* clears the fixed navbar on anchor jumps */
+}
 
 body {
   font-family: var(--font-body);
@@ -104,27 +108,24 @@ section { overflow: hidden; }
 }
 .btn-red:hover { background: var(--red-dark); }
 
-.btn-outline-cream {
-  background: transparent;
-  color: var(--cream);
-  border: 2px solid var(--cream);
-}
-.btn-outline-cream:hover { background: var(--cream); color: var(--green); }
-
-/* Fade-in animation (applied by IntersectionObserver) */
+/* Fade-in animation.
+   Content is visible by default; main.js adds .js-animate to <html> just
+   before it starts observing, so a JS failure leaves the page readable
+   rather than blank. */
 .fade-in {
-  opacity: 0;
-  transform: translateY(28px);
   transition: opacity .65s ease, transform .65s ease;
 }
-.fade-in.visible {
+.js-animate .fade-in {
+  opacity: 0;
+  transform: translateY(28px);
+}
+.js-animate .fade-in.visible {
   opacity: 1;
   transform: translateY(0);
 }
 .fade-in.delay-1 { transition-delay: .1s; }
 .fade-in.delay-2 { transition-delay: .2s; }
 .fade-in.delay-3 { transition-delay: .3s; }
-.fade-in.delay-4 { transition-delay: .4s; }
 
 /* ============================================================
    NAVIGATION
@@ -157,14 +158,12 @@ section { overflow: hidden; }
   text-decoration: none;
 }
 
-/* ── LOGO IMAGE: swap src to Asset_1.png once available ── */
 .nav-logo img {
   height: 42px;
   width: auto;
-  /* If Asset_1.png is in the same folder as index.html, src="Asset_1.png" */
 }
 
-/* Fallback text logo shown when image is missing */
+/* Wordmark shown alongside the logo image */
 .nav-logo-text {
   font-family: var(--font-display);
   font-weight: 700;
@@ -250,8 +249,6 @@ section { overflow: hidden; }
   padding-block: clamp(4rem, 10vw, 7rem);
 }
 
-.hero-text {}
-
 .hero-eyebrow {
   display: inline-flex;
   align-items: center;
@@ -317,12 +314,9 @@ section { overflow: hidden; }
   50% { transform: translateY(4px); }
 }
 
-/* ── HERO IMAGE PLACEHOLDER ──
-   Replace the .hero-image-placeholder div with an <img> tag when you have the photo.
-   Suggested: <img src="your-photo.jpg" alt="Grow CT garden beds" class="hero-img" />
-── */
 .hero-image-wrap {
   position: relative;
+  z-index: 0; /* contains the z-index:-1 backdrop below */
 }
 
 .hero-img {
@@ -465,7 +459,7 @@ section { overflow: hidden; }
   backdrop-filter: blur(4px);
 }
 
-.partner-box h4 {
+.partner-box-label {
   font-family: var(--font-body);
   font-size: .72rem;
   font-weight: 600;
@@ -734,7 +728,7 @@ section { overflow: hidden; }
 }
 .calendar-day.has-event:hover { background: var(--green-dark); }
 
-.calendar-events h4 {
+.calendar-events h3 {
   font-family: var(--font-display);
   font-size: 1.15rem;
   color: var(--green);
@@ -788,7 +782,7 @@ section { overflow: hidden; }
   color: var(--green);
 }
 
-.event-item-body h5 {
+.event-item-body h4 {
   font-size: .95rem;
   font-weight: 600;
   margin-bottom: .25rem;
@@ -858,6 +852,8 @@ section { overflow: hidden; }
   font-weight: 500;
 }
 
+.product-img-placeholder span { font-size: .75rem; }
+
 .product-img-placeholder svg {
   width: 40px; height: 40px;
   opacity: .35;
@@ -922,6 +918,14 @@ section { overflow: hidden; }
 }
 
 .notify-form button:hover { background: var(--green-dark); }
+
+.notify-confirm {
+  display: none;
+  margin-top: .6rem;
+  font-size: .82rem;
+  font-weight: 500;
+  color: var(--green);
+}
 
 .shop-right { padding-top: .5rem; }
 
@@ -1005,7 +1009,6 @@ section { overflow: hidden; }
   font-size: .88rem;
   color: var(--text-mid);
   line-height: 1.65;
-  /* ── TEAM BIO: replace this placeholder text with real bios ── */
   font-style: italic;
 }
 
@@ -1058,7 +1061,6 @@ section { overflow: hidden; }
   flex-shrink: 0;
 }
 
-/* ── SIGNUP FORM: replace YOUR_FORM_ID with your real Formspree form ID ── */
 .signup-form {
   background: var(--white);
   border-radius: var(--radius-lg);
@@ -1112,6 +1114,9 @@ section { overflow: hidden; }
 }
 
 .form-group textarea { resize: vertical; min-height: 90px; }
+
+.form-group .required { color: var(--red); }
+.form-group .optional { color: var(--text-mid); font-weight: 400; }
 
 .form-group input::placeholder,
 .form-group textarea::placeholder { color: #aaa; }
@@ -1199,7 +1204,6 @@ section { overflow: hidden; }
 
 .contact-link-icon svg { width: 16px; height: 16px; fill: currentColor; }
 
-/* ── CONTACT FORM: replace YOUR_FORM_ID with your real Formspree form ID ── */
 .contact-form {
   background: var(--white);
   border-radius: var(--radius-lg);
@@ -1208,12 +1212,14 @@ section { overflow: hidden; }
   border: 1px solid var(--cream-dark);
 }
 
-.contact-form h4 {
+.contact-form h3 {
   font-family: var(--font-display);
   font-size: 1.25rem;
   color: var(--text-dark);
   margin-bottom: 1.4rem;
 }
+
+.contact-form textarea { min-height: 120px; }
 
 @media (max-width: 780px) {
   .contact-layout { grid-template-columns: 1fr; gap: 2.5rem; }
@@ -1235,8 +1241,6 @@ footer {
   margin-bottom: 2.5rem;
 }
 
-.footer-brand {}
-
 .footer-logo {
   display: flex;
   align-items: center;
@@ -1244,7 +1248,6 @@ footer {
   margin-bottom: 1rem;
 }
 
-/* ── FOOTER LOGO IMAGE: same Asset_1.png as nav ── */
 .footer-logo img {
   height: 36px;
   width: auto;
@@ -1264,7 +1267,7 @@ footer {
   line-height: 1.65;
 }
 
-.footer-col h5 {
+.footer-col h3 {
   font-family: var(--font-body);
   font-size: .72rem;
   font-weight: 600;
@@ -1317,9 +1320,6 @@ footer {
   .footer-brand { grid-column: 1 / -1; }
 }
 
-@media (max-width: 480px) {
-  .footer-inner { grid-template-columns: 1fr; }
-}
 
 /* ============================================================
    MISC / SMALL
@@ -1329,8 +1329,23 @@ footer {
 ::-webkit-scrollbar-thumb { background: var(--green-light); border-radius: 4px; }
 
 @media (max-width: 480px) {
+  .footer-inner { grid-template-columns: 1fr; }
   .card-grid { grid-template-columns: 1fr; }
   .mission-stat-row { grid-template-columns: 1fr 1fr; }
   .notify-form { flex-direction: column; }
   .notify-form input, .notify-form button { border-radius: var(--radius); }
+}
+
+/* ============================================================
+   REDUCED MOTION
+============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
