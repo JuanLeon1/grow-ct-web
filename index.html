@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grow CT — Bringing Nutrition to Connecticut</title>
+  <meta name="description" content="A student-run club at Staples High School dedicated to building produce gardens and bringing nutritional education to low income communities in Connecticut." />
+
+  <link rel="canonical" href="https://grow-ct.org/" />
+  <link rel="icon" href="assets/logo.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://grow-ct.org/" />
+  <meta property="og:title" content="Grow CT — Bringing Nutrition to Connecticut" />
+  <meta property="og:description" content="A student-run club at Staples High School building produce gardens and bringing nutritional education to low income communities in Connecticut." />
+  <meta property="og:image" content="https://grow-ct.org/assets/hero-produce.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+  <!-- ============================================================
+       NAVIGATION
+  ============================================================ -->
+  <nav id="navbar" aria-label="Main navigation">
+    <div class="container nav-inner">
+
+      <!-- ── LOGO: assets/logo.png ── -->
+      <a href="#hero" class="nav-logo">
+        <img src="assets/logo.png" alt="Grow CT logo" onerror="this.style.display='none'" />
+        <span class="nav-logo-text">Grow CT</span>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#mission">Mission</a></li>
+        <li><a href="#container-garden-classes">Container Garden Classes</a></li>
+        <li><a href="#fundraising">Fundraising</a></li>
+        <li><a href="#shop">Shop</a></li>
+        <li><a href="#club-signup">Club Signup &amp; Contact</a></li>
+      </ul>
+
+    </div>
+  </nav>
+
+
+  <!-- ============================================================
+       SECTION 1: HERO
+  ============================================================ -->
+  <section id="hero">
+    <div class="container hero-inner">
+
+      <div class="hero-text">
+        <div class="hero-eyebrow fade-in">Staples High School, Westport CT</div>
+
+        <h1 class="hero-headline fade-in delay-1">
+          Bringing<br /><em>Nutrition</em><br />to Connecticut
+        </h1>
+
+        <p class="hero-sub fade-in delay-2">
+          A club based at Staples High School dedicated to building produce gardens
+          and bringing nutritional education to low income communities.
+        </p>
+
+        <div class="hero-cta-group fade-in delay-3">
+          <a href="#club-signup" class="btn btn-red">Join the Club</a>
+          <a href="#mission" class="hero-scroll-hint">
+            Learn more
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7 2v10M2 7l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-image-wrap fade-in delay-2">
+        <!-- ── HERO IMAGE: hero-produce.jpg ── -->
+        <img
+          src="assets/hero-produce.jpg"
+          alt="Colorful fresh produce in market crates — peppers, tomatoes, cucumbers, and more"
+          class="hero-img"
+        />
+
+        <!-- Partnership badge -->
+        <div class="hero-badge">
+          <div class="hero-badge-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2C8 2 5 5.5 5 9c0 5 7 13 7 13s7-8 7-13c0-3.5-3-7-7-7z"/>
+            </svg>
+          </div>
+          <div class="hero-badge-text">
+            <strong>Community Partners</strong>
+            <span>Wakeman Town Farm + Green Village Initiative</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 2: MISSION
+  ============================================================ -->
+  <section id="mission">
+
+    <!-- Decorative SVG leaf -->
+    <svg class="bg-accent" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M200 380C200 380 20 300 20 150C20 70 100 20 200 20C300 20 380 70 380 150C380 300 200 380 200 380Z" fill="white"/>
+      <path d="M200 20V380M20 150Q110 120 200 200Q290 280 380 150" stroke="rgba(255,255,255,.3)" stroke-width="2" fill="none"/>
+    </svg>
+
+    <div class="container mission-inner">
+      <div class="mission-grid">
+
+        <div class="mission-left fade-in">
+          <p class="section-label">Who We Are</p>
+          <h2 class="section-heading">Our Mission</h2>
+          <p class="mission-statement">
+            "Teach people how to grow and use fresh produce — improving nutrition across CT."
+          </p>
+          <p class="mission-vision">
+            We are working towards a future where everyone has access to fresh produce and
+            the facilities to maintain a nutritious diet. Through hands-on garden education,
+            community bed builds, and local partnerships, Grow CT bridges the gap between
+            food insecurity and sustainable nourishment.
+          </p>
+        </div>
+
+        <div class="mission-right fade-in delay-2">
+          <!-- ── PARTNERSHIP PHOTO: garden-farm.jpg ── -->
+          <div class="partner-photo-wrap">
+            <img
+              src="assets/garden-farm.jpg"
+              alt="Raised garden beds at golden hour with community members under a tent"
+              class="partner-photo"
+            />
+          </div>
+
+          <div class="partner-box">
+            <h4>Current Partnerships</h4>
+            <p class="partner-names">
+              <strong>Wakeman Town Farm</strong>
+              <span>+ Green Village Initiative</span>
+            </p>
+          </div>
+
+          <div class="mission-stat-row">
+            <div class="stat-card">
+              <strong>CT</strong>
+              <span>Communities served</span>
+            </div>
+            <div class="stat-card">
+              <strong>2</strong>
+              <span>Partner organizations</span>
+            </div>
+            <div class="stat-card">
+              <strong>SHS</strong>
+              <span>Based at Staples HS</span>
+            </div>
+            <div class="stat-card">
+              <strong>25</strong>
+              <span># of Club Members</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 3: CONTAINER GARDEN CLASSES
+  ============================================================ -->
+  <section id="container-garden-classes" class="card-section">
+    <div class="container">
+
+      <div class="card-section-header fade-in">
+        <p class="section-label">Education</p>
+        <h2 class="section-heading">Container Garden Classes</h2>
+        <p class="section-sub">
+          Learn how to grow your own produce at home with minimal space. Perfect for
+          apartments, small yards, and beginners.
+        </p>
+      </div>
+
+      <!-- ── CLASSES CARDS: fill in real class info below when available ── -->
+      <div class="card-grid">
+        <div class="card fade-in delay-1">
+          <div class="card-img-placeholder">[ Class photo coming soon ]</div>
+          <div class="card-body">
+            <span class="card-tag">Beginner</span>
+            <h3 class="card-title">Getting Started with Containers</h3>
+            <p class="card-desc">
+              <!-- Replace with real class description, date, location, and registration link -->
+              Class details, schedule, and registration will appear here.
+            </p>
+          </div>
+        </div>
+
+        <div class="card fade-in delay-2">
+          <div class="card-img-placeholder">[ Class photo coming soon ]</div>
+          <div class="card-body">
+            <span class="card-tag">Intermediate</span>
+            <h3 class="card-title">Growing Vegetables Year-Round</h3>
+            <p class="card-desc">
+              <!-- Replace with real class description, date, location, and registration link -->
+              Class details, schedule, and registration will appear here.
+            </p>
+          </div>
+        </div>
+
+        <div class="card fade-in delay-3">
+          <div class="card-img-placeholder">[ Class photo coming soon ]</div>
+          <div class="card-body">
+            <span class="card-tag">Nutrition</span>
+            <h3 class="card-title">From Garden to Table</h3>
+            <p class="card-desc">
+              <!-- Replace with real class description, date, location, and registration link -->
+              Class details, schedule, and registration will appear here.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="coming-soon-bar fade-in">
+        Coming soon — class details, schedule, and registration will appear here.
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 4: FUNDRAISING
+  ============================================================ -->
+  <section id="fundraising" class="card-section">
+    <div class="container">
+
+      <div class="card-section-header fade-in">
+        <p class="section-label">Support Our Mission</p>
+        <h2 class="section-heading">Fundraising</h2>
+        <p class="section-sub">
+          Every dollar helps us build garden beds, run container garden classes, and
+          bring fresh produce to communities across Connecticut. Give directly today,
+          or join us at an upcoming event.
+        </p>
+      </div>
+
+      <!-- ── DONATE CALLOUT: replace the GoFundMe link below with your real campaign URL ── -->
+      <div class="donate-callout fade-in">
+        <div class="donate-callout-text">
+          <h3>Donate on GoFundMe</h3>
+          <p>Every contribution goes toward garden beds, soil, seeds, and class supplies.</p>
+        </div>
+        <a
+          href="https://www.gofundme.com/f/REPLACE-WITH-YOUR-CAMPAIGN"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-red"
+        >
+          Donate on GoFundMe
+        </a>
+      </div>
+
+      <!-- ── EVENTS CALENDAR: to add, edit, or remove an event, scroll down to the
+           FUNDRAISING_EVENTS list near the bottom of this file (in the JavaScript
+           section) and edit it there. The calendar and list below update automatically. ── -->
+      <div class="calendar-wrap fade-in">
+
+        <div class="calendar-card">
+          <div class="calendar-header">
+            <button id="calPrev" type="button" class="calendar-nav" aria-label="Previous month">&#8249;</button>
+            <h3 id="calMonthLabel" class="calendar-month-label">Month Year</h3>
+            <button id="calNext" type="button" class="calendar-nav" aria-label="Next month">&#8250;</button>
+          </div>
+          <div class="calendar-weekdays">
+            <span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span>
+          </div>
+          <div id="calendarGrid" class="calendar-grid"><!-- filled in by JavaScript --></div>
+        </div>
+
+        <div class="calendar-events">
+          <h4>Upcoming Events</h4>
+          <ul id="eventsList" class="events-list"><!-- filled in by JavaScript --></ul>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 5: SHOP
+  ============================================================ -->
+  <section id="shop">
+    <div class="container">
+
+      <div class="fade-in">
+        <p class="section-label">Shop</p>
+        <h2 class="section-heading">Growing Kits &amp; More</h2>
+        <p class="section-sub">We're working on something. Container garden kits coming soon.</p>
+      </div>
+
+      <div class="shop-layout">
+
+        <!-- ── PRODUCT CARD: update name, price, description, and image when ready ── -->
+        <div class="product-card fade-in delay-1">
+          <!-- Replace this block with <img src="kit-photo.jpg" alt="Container Garden Kit" style="width:100%;aspect-ratio:4/3;object-fit:cover" /> -->
+          <div class="product-img-placeholder">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="8" y="28" width="32" height="12" rx="3" fill="#9B8A70"/>
+              <path d="M24 28V14M24 14C24 14 16 18 16 26M24 14C24 14 32 18 32 26" stroke="#6B3A2A" stroke-width="2.5" stroke-linecap="round"/>
+              <circle cx="24" cy="12" r="4" fill="#C0392B"/>
+            </svg>
+            <span style="font-size:.75rem">[ Product photo coming soon ]</span>
+          </div>
+          <div class="product-card-body">
+            <h3 class="product-name">Container Garden Kit</h3>
+            <!-- Replace TBD with real price when set -->
+            <p class="product-price">Price: TBD</p>
+            <p class="product-desc">Everything you need to start growing at home. Seeds, soil, container, and a getting-started guide — all in one box.</p>
+
+            <!-- Notify me form — JS handles the submit below -->
+            <form class="notify-form" id="notifyForm" novalidate>
+              <input type="email" placeholder="your@email.com" required aria-label="Email address for product launch notification" />
+              <button type="submit">Notify me</button>
+            </form>
+            <p id="notifyConfirm" style="display:none;font-size:.82rem;color:var(--green);margin-top:.6rem;font-weight:500">
+              &#10003; You're on the list! We'll reach out when kits launch.
+            </p>
+          </div>
+        </div>
+
+        <div class="shop-right fade-in delay-2">
+          <h3>Supporting Communities<br />Through Gardening</h3>
+          <p>
+            Every kit sold helps fund a garden bed build in an underserved community.
+            We believe growing food should be accessible to everyone — and your purchase
+            makes that possible.
+          </p>
+          <p>
+            <!-- Add more product info or a link to a full shop page here -->
+            More products are in development. Sign up to be notified when we launch.
+          </p>
+          <a href="#club-signup" class="btn btn-red">Get Involved</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 6: TEAM
+  ============================================================ -->
+  <section id="team">
+    <div class="container">
+
+      <div class="fade-in">
+        <p class="section-label">The People</p>
+        <h2 class="section-heading">Meet the Team</h2>
+        <p class="section-sub">Student-run from the ground up. Literally.</p>
+      </div>
+
+      <div class="team-grid">
+
+        <div class="team-card fade-in delay-1">
+          <!-- Avatar uses initials: DL for Derin Leon -->
+          <div class="avatar">DL</div>
+          <h3 class="team-name">Derin Leon</h3>
+          <p class="team-role">Founder &middot; Garden Manager &middot; Marketing</p>
+          <!-- ── TEAM BIO: replace placeholder with real bio ── -->
+          <p class="team-bio">Bio coming soon.</p>
+        </div>
+
+        <div class="team-card fade-in delay-2">
+          <!-- Avatar uses initials: LF for Levi Fieldman -->
+          <div class="avatar">LF</div>
+          <h3 class="team-name">Levi Fieldman</h3>
+          <p class="team-role">Co-Founder &middot; Finance Coordinator</p>
+          <!-- ── TEAM BIO: replace placeholder with real bio ── -->
+          <p class="team-bio">Bio coming soon.</p>
+        </div>
+
+        <div class="team-card fade-in delay-3">
+          <!-- Avatar uses initials: JP for James Papp -->
+          <div class="avatar">JP</div>
+          <h3 class="team-name">James Papp</h3>
+          <p class="team-role">Co-Founder &middot; Communications Manager</p>
+          <!-- ── TEAM BIO: replace placeholder with real bio ── -->
+          <p class="team-bio">Bio coming soon.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 7: CLUB SIGNUP
+  ============================================================ -->
+  <section id="club-signup">
+    <div class="container">
+      <div class="signup-inner">
+
+        <div class="signup-left fade-in">
+          <p class="section-label">Get Involved</p>
+          <h2 class="section-heading">Join the Club</h2>
+          <p class="section-sub">
+            We're a student-run club at Staples High School. Fill out the form to get
+            involved — no experience needed, just curiosity and a willingness to dig in.
+          </p>
+          <ul class="signup-benefits">
+            <li>Work on real community garden projects</li>
+            <li>Learn sustainable growing techniques</li>
+            <li>Make an impact in your community</li>
+            <li>Build your resume &amp; leadership skills</li>
+          </ul>
+        </div>
+
+        <div class="signup-right fade-in delay-2">
+          <!-- ── FORMSPREE: replace YOUR_FORM_ID with your real Formspree form ID
+               Get a free form at https://formspree.io ── -->
+          <form
+            class="signup-form"
+            id="signupForm"
+            action="https://formspree.io/f/YOUR_FORM_ID"
+            method="POST"
+          >
+            <div class="form-group">
+              <label for="signup-name">Full Name <span style="color:var(--red)">*</span></label>
+              <input type="text" id="signup-name" name="name" placeholder="Jane Smith" required />
+            </div>
+
+            <div class="form-group">
+              <label for="signup-email">School Email <span style="color:var(--red)">*</span></label>
+              <input type="email" id="signup-email" name="email" placeholder="jsmith25@westportps.org" required />
+            </div>
+
+            <div class="form-group">
+              <label for="signup-grade">Grade <span style="color:var(--red)">*</span></label>
+              <select id="signup-grade" name="grade" required>
+                <option value="" disabled selected>Select your grade</option>
+                <option value="9">9th Grade</option>
+                <option value="10">10th Grade</option>
+                <option value="11">11th Grade</option>
+                <option value="12">12th Grade</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="signup-why">Why do you want to join? <span style="color:var(--text-mid);font-weight:400">(Optional)</span></label>
+              <textarea id="signup-why" name="why" placeholder="Tell us a bit about yourself and why you're interested..."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-red form-submit">Sign Me Up</button>
+
+            <div class="form-confirm" id="signupConfirm">
+              <p>&#127807; Welcome to Grow CT!</p>
+              <span>We'll be in touch soon with next steps. See you at the garden.</span>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 8: CONTACT
+  ============================================================ -->
+  <section id="contact">
+    <div class="container">
+
+      <div class="fade-in">
+        <p class="section-label">Say Hello</p>
+        <h2 class="section-heading">Get in Touch</h2>
+      </div>
+
+      <div class="contact-layout">
+
+        <div class="contact-info fade-in delay-1">
+          <h3>We'd love to hear from you.</h3>
+          <p>
+            Whether you're a community org interested in partnering, a parent with questions,
+            or just curious about what we do — reach out anytime.
+          </p>
+
+          <ul class="contact-link-list">
+            <li>
+              <!-- ── EMAIL: update address if it changes ── -->
+              <a href="mailto:jamespapp02@gmail.com">
+                <span class="contact-link-icon">
+                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                </span>
+                jamespapp02@gmail.com
+              </a>
+            </li>
+            <li>
+              <!-- ── INSTAGRAM: link opens in new tab ── -->
+              <a href="https://instagram.com/growctorg" target="_blank" rel="noopener noreferrer">
+                <span class="contact-link-icon">
+                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="white"/></svg>
+                </span>
+                @growctorg
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- ── CONTACT FORM FORMSPREE: replace YOUR_FORM_ID with your real Formspree form ID ── -->
+        <div class="contact-form fade-in delay-2">
+          <h4>Send us a message</h4>
+          <form id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+
+            <div class="form-group">
+              <label for="contact-name">Name</label>
+              <input type="text" id="contact-name" name="name" placeholder="Your name" required />
+            </div>
+
+            <div class="form-group">
+              <label for="contact-email">Email</label>
+              <input type="email" id="contact-email" name="email" placeholder="your@email.com" required />
+            </div>
+
+            <div class="form-group">
+              <label for="contact-message">Message</label>
+              <textarea id="contact-message" name="message" placeholder="What's on your mind?" style="min-height:120px" required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-red" style="width:100%;padding:.85rem">Send Message</button>
+
+            <div class="form-confirm" id="contactConfirm">
+              <p>&#10003; Message received!</p>
+              <span>We'll get back to you as soon as we can.</span>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <!-- ── FOOTER LOGO IMAGE: same assets/logo.png file ── -->
+            <img src="assets/logo.png" alt="Grow CT logo" onerror="this.style.display='none'" />
+            <span class="footer-logo-text">Grow CT</span>
+          </div>
+          <p class="footer-tagline">
+            Growing Community Through Food.<br />
+            Staples High School &bull; Westport, CT
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h5>Navigate</h5>
+          <ul>
+            <li><a href="#mission">Mission</a></li>
+            <li><a href="#shop">Shop</a></li>
+            <li><a href="#club-signup">Club Signup</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Connect</h5>
+          <ul>
+            <li>
+              <a href="https://instagram.com/growctorg" target="_blank" rel="noopener noreferrer">Instagram</a>
+            </li>
+            <li>
+              <a href="mailto:jamespapp02@gmail.com">Email Us</a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copy">&copy; 2025 Grow CT. All rights reserved.</p>
+        <a href="https://instagram.com/growctorg" target="_blank" rel="noopener noreferrer" class="footer-instagram">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+          @growctorg
+        </a>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ============================================================
+       JAVASCRIPT
+  ============================================================ -->
+  <script src="main.js"></script>
+
+</body>
+</html>

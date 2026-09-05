@@ -1,0 +1,14 @@
+{
+  // Cloudflare Workers config — serves the site as static assets.
+  // Deploy:  npx wrangler deploy
+  // Preview: npx wrangler dev
+  "name": "grow-ct-web",
+  "compatibility_date": "2026-09-01",
+  "assets": {
+    "directory": "."
+  }
+  // When you add dynamic endpoints later, add:
+  //   "main": "src/index.js",
+  //   "assets": { "directory": ".", "binding": "ASSETS" }
+  // and bind D1 / KV / R2 here.
+}

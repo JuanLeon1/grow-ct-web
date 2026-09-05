@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://grow-ct.org/sitemap.xml
