@@ -51,14 +51,13 @@ These are placeholders in the current draft and must be replaced:
 
 - [ ] `sitemap.xml` / `index.html` assume the domain is `grow-ct.org` — correct if that changes.
 - [ ] **Formspree form IDs.** `index.html` contains `https://formspree.io/f/YOUR_FORM_ID`
-      in two places (the signup form and the contact form). Both silently fail until
-      replaced with real endpoint IDs from a Formspree account.
+      in three places (club signup, contact, and the shop "Notify me" form). Each needs
+      its own endpoint ID from a Formspree account; until then they show an error on
+      submit.
 - [ ] **GoFundMe link.** `index.html` contains
       `https://www.gofundme.com/f/REPLACE-WITH-YOUR-CAMPAIGN` on the donate button.
 - [ ] **Product card photo.** The "Container Garden Kit" card uses a placeholder SVG.
       A comment in `index.html` shows the `<img>` tag to swap in when a photo exists.
-- [ ] **Hero image alternative.** A comment in `styles.css` describes an unused
-      `.hero-image-placeholder` path; harmless, but can be deleted.
 
 ## Notes
 
