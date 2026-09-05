@@ -62,7 +62,5 @@ These are placeholders in the current draft and must be replaced:
 
 ## Notes
 
-- `index.html.bak` is an older draft, kept locally but excluded from git (`*.bak`).
-  Git history replaces the need for it.
 - Images are unoptimized (~600 KB total). If page weight becomes a concern, convert
   `hero-produce.jpg` and `garden-farm.jpg` to WebP.
