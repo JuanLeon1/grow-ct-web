@@ -292,3 +292,71 @@ JavaScript grows.
 
 Unchanged from #2. Actions runs the *checks*; Cloudflare still does the
 deploying.
+
+---
+
+## 11. Checks are required on `main`
+
+**2026-09-07 · Accepted**
+
+Ruleset `22417183` on the default branch. Before this, a failing check showed a
+red X and the merge button stayed live, which is worth nothing on a repo with a
+single maintainer who is also the person in a hurry.
+
+| Rule | Setting |
+| --- | --- |
+| Pull request required | 0 approvals — GitHub does not let you approve your own |
+| Required checks | `static checks`, `smoke test the preview` |
+| Force-push | blocked (`non_fast_forward`) |
+| Branch deletion | blocked |
+| Bypass | the repository owner, mode `always` |
+
+The bypass exists so a Cloudflare outage or a wedged build cannot trap a merge
+that has to happen. The repo has one collaborator, so it grants nothing beyond
+that account.
+
+### Why requiring these two is safe
+
+A job skipped by an `if:` condition [reports as **Success**][skip] and does not
+block. That is what makes this configuration workable: the `production` job is
+skipped on pull requests, and `smoke test the preview` is skipped on forks,
+neither of which leaves a pull request stuck pending.
+
+Skipped *workflows* behave differently — one skipped by a path or branch filter
+stays pending and does block. Ours has no path filters. If path filters are ever
+added, this rule has to be revisited or the required checks will hang.
+
+`smoke test production` is deliberately **not** required: it only runs on push
+to `main`, so on a pull request it never reports anything meaningful.
+
+[skip]: https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/control-jobs-with-conditions
+
+### Two traps found while setting this up
+
+**The bypass role id is an undocumented magic number.** `bypass_actors` takes
+`{"actor_id": 5, "actor_type": "RepositoryRole"}`, and GitHub's REST reference
+does not map ids to role names anywhere. Confirmed working by reading the
+ruleset back with `gh ruleset view`, which prints `You can bypass: always`.
+Keep `actor_id: 5` if editing this via the API, and verify the same way rather
+than trusting the number.
+
+**GitHub silently defaults `require_extra_approval_for_unattributed_changes` to
+`true`.** Combined with 0 required approvals that is a latent deadlock: commits
+here carry a `Co-Authored-By` trailer for an address with no GitHub account, so
+a merge could have demanded an approval nobody is able to give. Explicitly set
+to `false`.
+
+### Verified, and not
+
+Enforcement is real. The pull request that added this entry reported
+`mergeStateStatus: BLOCKED` while the two required checks were pending, and
+flipped to `CLEAN` only once both reported success. `smoke test production`
+showed as `SKIPPED` throughout and did not block, confirming the reasoning
+above. Cloudflare's own `Workers Builds: grow-ct-web` check reports alongside
+ours but is not required.
+
+Still untested: a check that actually *fails* rather than one that is merely
+pending. That needs a deliberately broken pull request. Note that
+`git push --dry-run` proves nothing here — it does not evaluate server-side
+rules.
+
