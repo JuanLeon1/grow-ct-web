@@ -22,6 +22,7 @@ sitemap.xml       Sitemap for search engines.
 wrangler.jsonc    Cloudflare Workers deploy config.
 .assetsignore     Files excluded from public serving.
 DECISIONS.md      Why the setup is what it is; rejected alternatives.
+tests/            Static checks and HTTP smoke tests. No dependencies.
 ```
 
 To change colors or fonts, edit the `:root` block at the top of `styles.css` — every
@@ -48,6 +49,32 @@ so replies go to the person who submitted.
 Formspree's free plan caps submissions at 50 per month across all three forms.
 That is a deliberate trade — see [decision 8](DECISIONS.md#8-forms-stay-on-formspree-for-now),
 which also records the migration path to self-hosting when the cap starts to bite.
+
+## Checks
+
+Two scripts, no dependencies beyond `python3`, `bash`, `curl` and `node`:
+
+```bash
+python3 tests/static-checks.py          # the repo: links, assets, labels, syntax
+python3 tests/static-checks.py --strict # also fail on unfinished placeholders
+
+tests/smoke.sh https://grow-ct.org --zone   # a deployed copy
+```
+
+`static-checks.py` fails on things that are broken now — a nav link pointing at
+a section id that does not exist, a referenced file missing from the repo, an
+image without alt text, an unlabelled form control, a form still on a
+placeholder endpoint, a heading level that skips, JS that does not parse.
+Unfinished content is reported as a warning instead, so the check is not
+permanently red; `--strict` turns those into failures for a pre-launch gate.
+
+`smoke.sh` checks a deployed copy: status codes, the five security headers, the
+cache rules, and that config files are not publicly served. `--zone` adds the
+redirects that only exist on the real domain (HTTP→HTTPS, www→apex);
+`--wait-for ./index.html` polls until the deploy has caught up with the commit
+before asserting, which matters in CI because Cloudflare builds independently.
+
+Both run automatically — see [decision 10](DECISIONS.md#10-what-we-test-and-where).
 
 ## Local development
 

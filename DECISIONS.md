@@ -228,3 +228,67 @@ This is enforced outside the repo: `~/.gitconfig` has an
 `includeIf "gitdir:~/src/JuanLeon1/"` pointing at `~/.gitconfig-juanleon1`,
 which sets the identity, `gpg.format = ssh`, and the signing key. A clone placed
 outside that directory will silently use the work identity again.
+
+---
+
+## 10. What we test, and where
+
+**2026-09-07 · Accepted**
+
+There is no build step and no framework, so there is nothing to unit test. The
+failure modes that actually matter are a maintainer editing HTML by hand and
+breaking something silently, and the deployed configuration drifting from what
+the repo says. Two scripts, no dependencies:
+
+**`tests/static-checks.py`** — the repo. Anchors resolve to real ids, referenced
+files exist, images have alt text, form controls are labelled, `target="_blank"`
+carries `noopener`, forms have real actions, heading levels do not skip, JS
+parses, CSS braces balance. Runs on every pull request.
+
+Unfinished content (the GoFundMe placeholder, team bios, the product photo) is
+reported as a **warning**, not a failure. A check that is red from day one is a
+check everybody learns to ignore. `--strict` promotes warnings to failures, for
+use as a pre-launch gate.
+
+**`tests/smoke.sh`** — a deployed copy. Status codes, the five `_headers`
+security headers, the cache rules, and that `.assetsignore` is keeping config
+files off the public site.
+
+### Why the split between preview and production
+
+Preview URLs exercise the *Worker's* surface but not the *zone's*. Verified
+empirically: `_headers` and `.assetsignore` both apply on a preview hostname,
+but `http://<preview>.workers.dev` returns 200 rather than upgrading, because
+Always Use HTTPS (#5) is a zone setting. There is no `www` variant of a preview
+hostname either.
+
+So pull requests run the 18 Worker-surface checks against the branch preview,
+and pushes to `main` run those plus the four zone-level redirect checks against
+`grow-ct.org` (`--zone`).
+
+### The freshness gate
+
+Cloudflare's build runs independently of GitHub Actions, so a naive check races
+it and can pass against the *previous* version of the branch. `--wait-for
+./index.html` polls until the served page hashes equal to the committed one,
+timing out after three minutes. A failed build therefore shows up as a timeout
+rather than a false green.
+
+The preview hostname is read from Cloudflare's own pull request comment rather
+than constructed from the branch name: how Cloudflare derives the hostname is
+not documented, so guessing it would be a silent trap for a branch name with a
+slash in it. Branch names should still be lowercase alphanumeric with dashes.
+
+### Rejected: browser tests
+
+Playwright would cover the only genuinely untested things — the mobile nav
+toggle, fade-ins, form interception, the calendar. Skipped for now because it
+means `node_modules`, a lockfile and a browser download in CI, turning a repo
+you can clone and open in a browser into one with a toolchain. That cost lands
+on the non-technical successor these checks exist to protect. Revisit if the
+JavaScript grows.
+
+### Rejected: GitHub Actions for deploys
+
+Unchanged from #2. Actions runs the *checks*; Cloudflare still does the
+deploying.

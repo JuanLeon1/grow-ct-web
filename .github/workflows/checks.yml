@@ -1,0 +1,70 @@
+name: checks
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  static:
+    name: static checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 tests/static-checks.py
+
+  preview:
+    name: smoke test the preview
+    runs-on: ubuntu-latest
+    # Forks do not get a Cloudflare preview build, so there would be nothing
+    # to test.
+    if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Find the branch preview URL
+        id: preview
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR: ${{ github.event.pull_request.number }}
+          BRANCH: ${{ github.head_ref }}
+        run: |
+          # Cloudflare's build runs independently of this workflow and posts the
+          # preview URL as a PR comment when it finishes, so poll for it. The
+          # comment is authoritative: how Cloudflare derives the hostname from a
+          # branch name is not documented, so we do not construct it ourselves.
+          slug=$(echo "$BRANCH" | tr '[:upper:]' '[:lower:]' | sed 's#[^a-z0-9-]#-#g')
+          for attempt in $(seq 1 18); do
+            url=$(gh pr view "$PR" --json comments --jq '.comments[].body' \
+                  | grep -oE "https://${slug}-grow-ct-web\.[a-z0-9-]+\.workers\.dev" \
+                  | head -1) || true
+            if [ -n "$url" ]; then
+              echo "url=$url" >> "$GITHUB_OUTPUT"
+              echo "Found $url"
+              exit 0
+            fi
+            echo "No preview URL for '$slug' yet (attempt $attempt/18)..."
+            sleep 10
+          done
+          echo "::error::No Cloudflare preview URL appeared within 3 minutes."
+          echo "Check the Worker's build log, and that non-production branch"
+          echo "builds are enabled. Branch names should be lowercase"
+          echo "alphanumeric with dashes so they map cleanly to a hostname."
+          exit 1
+
+      - name: Smoke test
+        run: tests/smoke.sh "${{ steps.preview.outputs.url }}" --wait-for ./index.html
+
+  production:
+    name: smoke test production
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+    steps:
+      - uses: actions/checkout@v4
+      # Zone-level checks (HTTP->HTTPS, www->apex) only exist on the real
+      # domain, so they run here and not against previews.
+      - run: tests/smoke.sh https://grow-ct.org --zone --wait-for ./index.html
