@@ -69,27 +69,63 @@ navLinksEl.querySelectorAll('a').forEach(a => {
 /* ── Formspree forms ──
    All three post the same way and differ only in what gets swapped out for
    the confirmation: the submit button for the long forms, the whole form for
-   the inline shop one. That choice is `pickHideTarget`. */
+   the inline shop one. That choice is `pickHideTarget`.
+
+   Without JS the browser posts natively to the same action and Formspree
+   shows its own thank-you page, so these handlers are an enhancement rather
+   than the only path. */
 function wireFormspreeForm(formId, confirmId, pickHideTarget) {
   const form    = document.getElementById(formId);
   const confirm = document.getElementById(confirmId);
   if (!form || !confirm) return;
 
+  const button  = form.querySelector('button[type=submit]');
+  const errorEl = document.getElementById(`${formId.replace(/Form$/, '')}Error`);
+
+  function showError(message) {
+    if (!errorEl) return;
+    errorEl.textContent = message;
+    errorEl.hidden = false;
+  }
+
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
+    if (form.dataset.submitting) return; /* ignore double clicks */
+
+    const label = button.textContent;
+    form.dataset.submitting = 'true';
+    button.disabled = true;
+    button.textContent = 'Sending…';
+    if (errorEl) errorEl.hidden = true;
+
     try {
       const res = await fetch(form.action, {
         method: 'POST',
         body: new FormData(form),
         headers: { Accept: 'application/json' }
       });
-      if (!res.ok) throw new Error(`Formspree responded ${res.status}`);
+
+      if (!res.ok) {
+        /* Formspree returns { errors: [{ code, message }] } for a bad form ID,
+           a disabled form, or an exceeded submission quota. None of those are
+           anything a visitor can act on, so the detail goes to the console and
+           they get told how else to reach us. */
+        const body = await res.json().catch(() => null);
+        throw new Error(body?.errors?.map(err => err.message).join('; ')
+          || `the form service returned ${res.status}`);
+      }
 
       pickHideTarget(form).style.display = 'none';
       confirm.style.display = 'block';
       form.reset();
-    } catch {
-      alert('Something went wrong — please try again or email us directly.');
+    } catch (err) {
+      console.error(`${formId}: ${err.message}`);
+      showError("Sorry — that didn't send. Please try again in a moment, or "
+        + 'reach us at the email address in the Contact section.');
+      button.disabled = false;
+      button.textContent = label;
+    } finally {
+      delete form.dataset.submitting;
     }
   });
 }

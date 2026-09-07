@@ -1118,6 +1118,25 @@ section { overflow: hidden; }
 .form-group .required { color: var(--red); }
 .form-group .optional { color: var(--text-mid); font-weight: 400; }
 
+/* Honeypot — must be hidden visually but still present in the DOM for bots. */
+.gotcha { display: none; }
+
+/* Submission failure message. Deliberately has no `display` of its own so the
+   `hidden` attribute keeps working. */
+.form-error {
+  margin-top: .8rem;
+  padding: .8rem 1rem;
+  border-radius: var(--radius);
+  background: rgba(192,57,43,.08);
+  border: 1.5px solid rgba(192,57,43,.25);
+  font-size: .85rem;
+  line-height: 1.55;
+  color: var(--red-dark);
+}
+
+/* Buttons mid-submit */
+button[disabled] { opacity: .65; cursor: progress; }
+
 .form-group input::placeholder,
 .form-group textarea::placeholder { color: #aaa; }
 

@@ -23,6 +23,24 @@ wrangler.jsonc    Cloudflare Workers deploy config.
 To change colors or fonts, edit the `:root` block at the top of `styles.css` — every
 color on the site is defined there once.
 
+## Forms
+
+Three forms post to Formspree: club signup, contact, and the shop waitlist. All
+three go through `wireFormspreeForm()` in `main.js`, which posts via `fetch`,
+swaps in an inline confirmation, and shows an error message without losing what
+the visitor typed. With JavaScript disabled the browser posts natively to the
+same `action` and Formspree shows its own thank-you page.
+
+Each form carries two hidden fields:
+
+- `subject` — sets the notification email's subject line. Supports `{{ field }}`
+  templating, e.g. `New club signup from {{ name }} (grade {{ grade }})`.
+- `_gotcha` — honeypot, hidden with CSS. Formspree silently drops any submission
+  where it has a value.
+
+The `email` field name is significant: Formspree uses it for the Reply-To header,
+so replies go to the person who submitted.
+
 ## Local development
 
 No tooling required. Open `index.html` in a browser, or serve it properly (needed if
@@ -53,7 +71,8 @@ These are placeholders in the current draft and must be replaced:
 - [ ] **Formspree form IDs.** `index.html` contains `https://formspree.io/f/YOUR_FORM_ID`
       in three places (club signup, contact, and the shop "Notify me" form). Each needs
       its own endpoint ID from a Formspree account; until then they show an error on
-      submit.
+      submit. Formspree's free plan allows unlimited forms but 50 submissions per
+      month across all of them.
 - [ ] **GoFundMe link.** `index.html` contains
       `https://www.gofundme.com/f/REPLACE-WITH-YOUR-CAMPAIGN` on the donate button.
 - [ ] **Product card photo.** The "Container Garden Kit" card uses a placeholder SVG.
