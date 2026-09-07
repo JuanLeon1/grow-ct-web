@@ -68,11 +68,10 @@ deploys automatically and every pull request gets its own preview URL.
 These are placeholders in the current draft and must be replaced:
 
 - [ ] `sitemap.xml` / `index.html` assume the domain is `grow-ct.org` — correct if that changes.
-- [ ] **Formspree form IDs.** `index.html` contains `https://formspree.io/f/YOUR_FORM_ID`
-      in three places (club signup, contact, and the shop "Notify me" form). Each needs
-      its own endpoint ID from a Formspree account; until then they show an error on
-      submit. Formspree's free plan allows unlimited forms but 50 submissions per
-      month across all of them.
+- [x] **Formspree form IDs.** Wired: club signup `mkjnqwwn`, contact `mrpgyzzp`,
+      kit waitlist `xbgjzrro`. Notifications go to `formspree@grow-ct.org`, which
+      needs an Email Routing rule forwarding it to a real inbox. The free plan
+      allows 50 submissions per month across all three forms.
 - [ ] **GoFundMe link.** `index.html` contains
       `https://www.gofundme.com/f/REPLACE-WITH-YOUR-CAMPAIGN` on the donate button.
 - [ ] **Product card photo.** The "Container Garden Kit" card uses a placeholder SVG.
