@@ -23,6 +23,24 @@ wrangler.jsonc    Cloudflare Workers deploy config.
 To change colors or fonts, edit the `:root` block at the top of `styles.css` — every
 color on the site is defined there once.
 
+## Forms
+
+Three forms post to Formspree: club signup, contact, and the shop waitlist. All
+three go through `wireFormspreeForm()` in `main.js`, which posts via `fetch`,
+swaps in an inline confirmation, and shows an error message without losing what
+the visitor typed. With JavaScript disabled the browser posts natively to the
+same `action` and Formspree shows its own thank-you page.
+
+Each form carries two hidden fields:
+
+- `subject` — sets the notification email's subject line. Supports `{{ field }}`
+  templating, e.g. `New club signup from {{ name }} (grade {{ grade }})`.
+- `_gotcha` — honeypot, hidden with CSS. Formspree silently drops any submission
+  where it has a value.
+
+The `email` field name is significant: Formspree uses it for the Reply-To header,
+so replies go to the person who submitted.
+
 ## Local development
 
 No tooling required. Open `index.html` in a browser, or serve it properly (needed if
@@ -50,10 +68,10 @@ deploys automatically and every pull request gets its own preview URL.
 These are placeholders in the current draft and must be replaced:
 
 - [ ] `sitemap.xml` / `index.html` assume the domain is `grow-ct.org` — correct if that changes.
-- [ ] **Formspree form IDs.** `index.html` contains `https://formspree.io/f/YOUR_FORM_ID`
-      in three places (club signup, contact, and the shop "Notify me" form). Each needs
-      its own endpoint ID from a Formspree account; until then they show an error on
-      submit.
+- [x] **Formspree form IDs.** Wired: club signup `mkjnqwwn`, contact `mrpgyzzp`,
+      kit waitlist `xbgjzrro`. Notifications go to `formspree@grow-ct.org`, which
+      needs an Email Routing rule forwarding it to a real inbox. The free plan
+      allows 50 submissions per month across all three forms.
 - [ ] **GoFundMe link.** `index.html` contains
       `https://www.gofundme.com/f/REPLACE-WITH-YOUR-CAMPAIGN` on the donate button.
 - [ ] **Product card photo.** The "Container Garden Kit" card uses a placeholder SVG.
