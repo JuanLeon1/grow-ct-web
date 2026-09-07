@@ -346,10 +346,17 @@ here carry a `Co-Authored-By` trailer for an address with no GitHub account, so
 a merge could have demanded an approval nobody is able to give. Explicitly set
 to `false`.
 
-### Not yet verified
+### Verified, and not
 
-That a genuinely failing check blocks the merge. Proving it needs a deliberately
-broken pull request, and `git push --dry-run` does not evaluate server-side
-rules, so it tells you nothing. Enforcement reads as active and the rules read
-back correctly; the first real red check is the proof.
+Enforcement is real. The pull request that added this entry reported
+`mergeStateStatus: BLOCKED` while the two required checks were pending, and
+flipped to `CLEAN` only once both reported success. `smoke test production`
+showed as `SKIPPED` throughout and did not block, confirming the reasoning
+above. Cloudflare's own `Workers Builds: grow-ct-web` check reports alongside
+ours but is not required.
+
+Still untested: a check that actually *fails* rather than one that is merely
+pending. That needs a deliberately broken pull request. Note that
+`git push --dry-run` proves nothing here — it does not evaluate server-side
+rules.
 
