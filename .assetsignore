@@ -6,3 +6,5 @@ README.md
 DECISIONS.md
 *.bak
 .DS_Store
+tests/
+.github/
