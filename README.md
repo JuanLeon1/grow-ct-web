@@ -5,6 +5,9 @@ gardens and bringing nutritional education to low-income communities in Connecti
 
 Static single-page site. No build step — the files in this repo are what get served.
 
+Why things are set up the way they are — and which alternatives were rejected —
+is in [DECISIONS.md](DECISIONS.md).
+
 ## Layout
 
 ```
@@ -18,6 +21,7 @@ robots.txt        Crawler rules.
 sitemap.xml       Sitemap for search engines.
 wrangler.jsonc    Cloudflare Workers deploy config.
 .assetsignore     Files excluded from public serving.
+DECISIONS.md      Why the setup is what it is; rejected alternatives.
 ```
 
 To change colors or fonts, edit the `:root` block at the top of `styles.css` — every
@@ -40,6 +44,10 @@ Each form carries two hidden fields:
 
 The `email` field name is significant: Formspree uses it for the Reply-To header,
 so replies go to the person who submitted.
+
+Formspree's free plan caps submissions at 50 per month across all three forms.
+That is a deliberate trade — see [decision 8](DECISIONS.md#8-forms-stay-on-formspree-for-now),
+which also records the migration path to self-hosting when the cap starts to bite.
 
 ## Local development
 
@@ -70,8 +78,7 @@ These are placeholders in the current draft and must be replaced:
 - [ ] `sitemap.xml` / `index.html` assume the domain is `grow-ct.org` — correct if that changes.
 - [x] **Formspree form IDs.** Wired: club signup `mkjnqwwn`, contact `mrpgyzzp`,
       kit waitlist `xbgjzrro`. Notifications go to `formspree@grow-ct.org`, which
-      needs an Email Routing rule forwarding it to a real inbox. The free plan
-      allows 50 submissions per month across all three forms.
+      needs an Email Routing rule forwarding it to a real inbox.
 - [ ] **GoFundMe link.** `index.html` contains
       `https://www.gofundme.com/f/REPLACE-WITH-YOUR-CAMPAIGN` on the donate button.
 - [ ] **Product card photo.** The "Container Garden Kit" card uses a placeholder SVG.

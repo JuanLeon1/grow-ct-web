@@ -1,0 +1,230 @@
+# Decisions
+
+Why things are the way they are, including the options we rejected. Entries are
+append-only: when a decision changes, add a new one and mark the old one
+superseded rather than editing it away.
+
+The forward-looking work list is **not** here — it lives in the "Before going
+live" section of [README.md](README.md), which is the one authoritative
+next-steps list.
+
+---
+
+## 1. Host as Cloudflare Workers static assets
+
+**2026-09-05 · Accepted**
+
+The site is HTML, CSS, one JS file and three images, with no build step. It is
+served by a Worker in static-assets mode (`assets.directory` in
+`wrangler.jsonc`, no `main` entrypoint), on the `grow-ct.org` domain registered
+in the same Cloudflare account.
+
+Nothing executes server-side, so a bug in `main.js` degrades one feature and
+cannot take the site down. See #8 for what would change if that stops being
+true.
+
+---
+
+## 2. Deploy from git, not from a laptop
+
+**2026-09-05 · Accepted**
+
+The repo is connected to Cloudflare Workers Builds. Pushes to `main` run
+`npx wrangler deploy`; pushes to other branches run `npx wrangler versions
+upload`, which produces a preview without touching production. Build command is
+empty — there is nothing to build.
+
+Rejected: deploying by hand with `wrangler deploy`, which makes "what is live"
+depend on whose laptop last ran it. Also rejected: GitHub Actions, which adds a
+workflow file and an API token secret to achieve what the native integration
+already does.
+
+The Worker name in Cloudflare must match `name` in `wrangler.jsonc`, or builds
+fail.
+
+---
+
+## 3. `www` → apex redirect belongs at the zone, not in `_redirects`
+
+**2026-09-05 · Accepted. Supersedes the original `_redirects` approach.**
+
+The repo originally carried this rule in `_redirects`:
+
+```
+https://www.grow-ct.org/*  https://grow-ct.org/:splat  301
+```
+
+It cannot work. Workers static assets only accepts **relative paths** as
+redirect sources, and rejects hostname sources at deploy time with error
+`100324` — which is how we found it: the first build after connecting the repo
+failed outright.
+
+The reason is structural, not a quirk: `_redirects` belongs to the Worker, and
+the Worker only runs after Cloudflare has decided which hostname it is serving.
+Choosing between hostnames has to happen a layer up.
+
+So `www` → apex is a **zone-level Redirect Rule** (grow-ct.org → Rules →
+Redirect Rules), matching hostname `www.grow-ct.org` and redirecting to the apex
+with the path preserved. `_redirects` remains in the repo for future path-level
+moves and currently holds only comments.
+
+---
+
+## 4. `www` resolves via a placeholder DNS record
+
+**2026-09-05 · Accepted**
+
+A Redirect Rule only fires on traffic that reaches Cloudflare's edge, so `www`
+needs to resolve. It is a **proxied AAAA record pointing at `100::`** —
+Cloudflare's documented placeholder for a redirect-only ("originless") hostname,
+from the IPv6 discard prefix. It never routes anywhere; it exists so the edge
+accepts the connection and applies the rule.
+
+Rejected: adding `www.grow-ct.org` as a second Custom Domain on the Worker. That
+also works, but makes `www` a real second entry point to the site when its only
+job is to bounce visitors. The placeholder keeps `grow-ct.org` as the single
+Custom Domain.
+
+The orange cloud is load-bearing. A grey-cloud record would send visitors to the
+discard address and hang.
+
+---
+
+## 5. Always Use HTTPS is on
+
+**2026-09-05 · Accepted**
+
+Plain HTTP was being served rather than upgraded: `http://grow-ct.org/` returned
+200 over plaintext, and `http://www.grow-ct.org/` returned **522**, because on
+port 80 the Redirect Rule was not applied before Cloudflare tried to reach the
+`100::` placeholder.
+
+Enabling Always Use HTTPS (SSL/TLS → Edge Certificates) fixed both: HTTP is
+upgraded at the edge before anything else runs. `http://www` now takes two hops
+— upgrade, then hostname redirect — which is correct and not worth collapsing.
+
+---
+
+## 6. Preview strategy: branch previews on workers.dev
+
+**2026-09-05 · Accepted**
+
+Non-production branch builds are enabled, so every branch gets a preview URL and
+Cloudflare comments it onto the pull request. The **branch** alias
+(`site-fixes-grow-ct-web.<subdomain>.workers.dev`) is the one to use; it follows
+the branch tip across pushes.
+
+Two settings this depends on, both pinned in `wrangler.jsonc` because
+`wrangler deploy` overwrites dashboard toggles on every push:
+
+```jsonc
+"workers_dev": true,
+"preview_urls": true
+```
+
+`preview_urls` is **not** optional decoration — Cloudflare made preview URLs
+opt-in in September 2025, and Wrangler v4.34.0+ defaults it to `false`.
+
+Gotcha for future debugging: if every workers.dev hostname returns 404 with
+`error code: 1042`, the workers.dev route is off at the Worker or account level
+and the request is failing before the Worker runs. `npx wrangler triggers
+deploy` applies the routing settings from `wrangler.jsonc` without uploading
+code, which is what fixed it here.
+
+Consequence: the site is also publicly reachable at
+`grow-ct-web.<subdomain>.workers.dev`. That is inherent to preview URLs.
+
+---
+
+## 7. Content does not depend on JavaScript to be visible
+
+**2026-09-05 · Accepted. Supersedes the original fade-in implementation.**
+
+Every content block carries `.fade-in`, which started at `opacity: 0` and was
+revealed by an IntersectionObserver. A failure to load `main.js`, or any
+top-level exception in it, produced a blank page.
+
+Now `main.js` adds `.js-animate` to `<html>` as its first statement, and only
+`.js-animate .fade-in` is transparent. Animation is an enhancement; the page
+renders without it.
+
+The same principle governs the forms (#8): they have real `action` and `method`
+attributes, so without JS the browser posts natively and the form service shows
+its own thank-you page. The `fetch` handler is an upgrade, not the only path.
+
+---
+
+## 8. Forms stay on Formspree for now
+
+**2026-09-06 · Accepted**
+
+Three forms — club signup, contact, and the shop waitlist — post to Formspree.
+Free plan: unlimited forms, **50 submissions per month across all of them**, two
+notification addresses, 30 days of history.
+
+The cap is real and the club could plausibly hit it after an activities fair.
+We are accepting it anyway, because Formspree's free plan gives a dashboard a
+non-programmer can operate. The founders graduate; a successor can be handed a
+Formspree login, and cannot realistically be handed a Worker with a D1 binding.
+
+Formspree warns by email at 50%, 75% and 90% of the cap, and again when
+exceeded, so we get advance notice rather than discovering it from a lost
+signup. What it does *not* document is whether submission 51 is rejected,
+queued or dropped — assume the worst.
+
+### The migration path, for when it is needed
+
+Everything except the endpoint is already in place, and moving requires changing
+three `action` attributes plus adding a Worker route. The markup, honeypot,
+subject fields and JS handler all stay.
+
+Self-hosted shape:
+
+- **`POST /api/submit` on the Worker.** This means adding `main` to
+  `wrangler.jsonc` and routing everything else to the `ASSETS` binding —
+  reversing the property in #1 that no code of ours can 500 the homepage.
+- **Email via the `send_email` binding.** Cloudflare sends to *verified Email
+  Routing destination addresses* free on any plan. That is sufficient here: a
+  notification only ever goes to the club's own inbox, with `Reply-To` set to
+  the submitter so replies reach the student. Email Routing is already enabled
+  on `grow-ct.org` (MX records point at `route1/2/3.mx.cloudflare.net`), so the
+  prerequisite is done.
+- **D1 as the durable record, email as the notification.** Write the row first,
+  then send. A delivery failure then loses a notification, not a signup. D1's
+  free tier (5 GB, 100k writes/day) is orders of magnitude beyond a club's
+  volume.
+- **Turnstile for spam**, replacing Formspree's Formshield. The `_gotcha`
+  honeypot alone is not enough.
+
+Costs of moving, beyond the code:
+
+- No dashboard. Reading submissions means `wrangler d1 execute`, which is fine
+  for a maintainer and unusable for a student officer. This is the real price,
+  not the cap and not the implementation.
+- Data responsibility shifts to us. Formspree holds minors' names, school email
+  addresses and grades as a processor with 30-day retention. In our own D1 they
+  persist until deleted, and retention becomes a policy we have to write and
+  enforce.
+
+**Trigger to revisit:** the 50%-of-cap warning arriving in a normal month, or a
+maintainer who is comfortable operating a Worker.
+
+**Rejected: running both.** Formspree *and* a self-hosted endpoint means two
+systems to maintain and duplicate notifications, while still sitting under
+Formspree's cap — the cost of self-hosting without the benefit.
+
+---
+
+## 9. Commits are authored as the personal identity and SSH-signed
+
+**2026-09-05 · Accepted**
+
+The first two commits were authored with the work email, which attributed them
+to the wrong GitHub account. History was rewritten to
+`Juan Leon <github@artedo.com>` and re-signed with the SSH key
+`~/.ssh/github_JuanLeon1_ed25519`, preserving dates and trees.
+
+This is enforced outside the repo: `~/.gitconfig` has an
+`includeIf "gitdir:~/src/JuanLeon1/"` pointing at `~/.gitconfig-juanleon1`,
+which sets the identity, `gpg.format = ssh`, and the signing key. A clone placed
+outside that directory will silently use the work identity again.
