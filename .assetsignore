@@ -3,5 +3,6 @@ wrangler.jsonc
 .gitignore
 .assetsignore
 README.md
+DECISIONS.md
 *.bak
 .DS_Store
