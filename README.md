@@ -104,8 +104,9 @@ These are placeholders in the current draft and must be replaced:
 
 - [ ] `sitemap.xml` / `index.html` assume the domain is `grow-ct.org` — correct if that changes.
 - [x] **Formspree form IDs.** Wired: club signup `mkjnqwwn`, contact `mrpgyzzp`,
-      kit waitlist `xbgjzrro`. Notifications go to `formspree@grow-ct.org`, which
-      needs an Email Routing rule forwarding it to a real inbox.
+      kit waitlist `xbgjzrro`. Notifications go to `formspree@grow-ct.org`, via an
+      Email Routing rule. Verified end to end on 2026-09-07: a real submission
+      arrived with the templated subject and the submitter's address as Reply-To.
 - [ ] **GoFundMe link.** `index.html` contains
       `https://www.gofundme.com/f/REPLACE-WITH-YOUR-CAMPAIGN` on the donate button.
 - [ ] **Product card photo.** The "Container Garden Kit" card uses a placeholder SVG.

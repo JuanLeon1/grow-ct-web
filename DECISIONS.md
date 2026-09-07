@@ -172,6 +172,12 @@ exceeded, so we get advance notice rather than discovering it from a lost
 signup. What it does *not* document is whether submission 51 is rejected,
 queued or dropped — assume the worst.
 
+Verified end to end on 2026-09-07: a real submission through the contact form
+arrived at `formspree@grow-ct.org` with the templated subject line and the
+submitter's address in Reply-To, so the Formspree endpoint, the `subject`
+templating, the `email` Reply-To convention and the Email Routing hop are all
+confirmed rather than assumed.
+
 ### The migration path, for when it is needed
 
 Everything except the endpoint is already in place, and moving requires changing
