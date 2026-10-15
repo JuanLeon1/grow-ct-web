@@ -293,3 +293,80 @@ const FUNDRAISING_EVENTS = [
   renderCalendar();
   renderEventsList();
 })();
+
+/* ── Crop care guides ──
+   index.html holds all five guides in full, with plain jump links to each, so
+   the section works without JavaScript. Here we upgrade it to tabs: one guide
+   at a time, arrow-key navigation, and deep links like /#crop-basil. */
+(function initCropGuides() {
+  const tabList = document.getElementById('cropTabs');
+  if (!tabList) return;
+
+  const tabs = [...tabList.querySelectorAll('.crop-tab')];
+  const panelsWrap = document.querySelector('.crop-panels');
+  const panelOf = tab => document.getElementById(tab.dataset.crop);
+  if (!tabs.length || !panelsWrap || tabs.some(tab => !panelOf(tab))) return;
+
+  tabList.setAttribute('role', 'tablist');
+  tabList.setAttribute('aria-label', 'Choose a crop');
+  panelsWrap.classList.add('js-tabs');
+
+  tabs.forEach(tab => {
+    const panel = panelOf(tab);
+    tab.id = `${tab.dataset.crop}-tab`;
+    tab.setAttribute('role', 'tab');
+    tab.setAttribute('aria-controls', panel.id);
+    panel.setAttribute('role', 'tabpanel');
+    panel.setAttribute('aria-labelledby', tab.id);
+    panel.tabIndex = 0;
+  });
+
+  function select(tab, { focus = false } = {}) {
+    tabs.forEach(t => {
+      const on = t === tab;
+      t.setAttribute('aria-selected', on);
+      t.tabIndex = on ? 0 : -1;
+      panelOf(t).hidden = !on;
+    });
+    if (focus) tab.focus();
+  }
+
+  const fromHash = () =>
+    tabs.find(t => `#${t.dataset.crop}` === window.location.hash);
+
+  tabs.forEach((tab, i) => {
+    tab.addEventListener('click', e => {
+      e.preventDefault();
+      select(tab);
+      history.replaceState(null, '', `#${tab.dataset.crop}`);
+    });
+
+    tab.addEventListener('keydown', e => {
+      const last = tabs.length - 1;
+      const next = {
+        ArrowRight: tabs[i === last ? 0 : i + 1],
+        ArrowDown:  tabs[i === last ? 0 : i + 1],
+        ArrowLeft:  tabs[i === 0 ? last : i - 1],
+        ArrowUp:    tabs[i === 0 ? last : i - 1],
+        Home:       tabs[0],
+        End:        tabs[last],
+      }[e.key];
+      if (!next) return;
+      e.preventDefault();
+      select(next, { focus: true });
+      history.replaceState(null, '', `#${next.dataset.crop}`);
+    });
+  });
+
+  /* Back/forward, or a link to a crop from elsewhere on the page. */
+  window.addEventListener('hashchange', () => {
+    const match = fromHash();
+    if (match) select(match);
+  });
+
+  const initial = fromHash();
+  select(initial || tabs[0]);
+  /* Opening the page on /#crop-basil: the browser jumped to the guide before
+     the other four were hidden, so scroll back to the picker. */
+  if (initial) tabList.scrollIntoView();
+})();

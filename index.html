@@ -44,6 +44,7 @@
       <ul class="nav-links" id="navLinks">
         <li><a href="#mission">Mission</a></li>
         <li><a href="#container-garden-classes">Container Garden Classes</a></li>
+        <li><a href="#crop-guides">Crop Guides</a></li>
         <li><a href="#fundraising">Fundraising</a></li>
         <li><a href="#shop">Shop</a></li>
         <li><a href="#club-signup">Club Signup &amp; Contact</a></li>
@@ -215,6 +216,329 @@
       <div class="coming-soon-bar fade-in">
         Coming soon — class details, schedule, and registration will appear here.
       </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 3b: CROP CARE GUIDES
+       Pick a crop, see its guide. Every guide is written out in full below, so
+       the page still works without JavaScript (all five show, one after another,
+       and the buttons become jump links). main.js turns them into tabs.
+
+       TO EDIT a guide, find its <article class="crop-panel"> below.
+       TO SWAP a crop, change its button AND its article together: the button's
+       href / data-crop and the article's id must all match.
+  ============================================================ -->
+  <section id="crop-guides" class="card-section">
+    <div class="container">
+
+      <div class="card-section-header fade-in">
+        <p class="section-label">Care Guides</p>
+        <h2 class="section-heading">Pick a Crop, Start Growing</h2>
+        <p class="section-sub">
+          Choose a plant to see how to pot it, care for it, and harvest it.
+        </p>
+      </div>
+
+      <div class="crop-tabs fade-in" id="cropTabs">
+        <a class="crop-tab" href="#crop-basil" data-crop="crop-basil">
+          <span class="crop-tab-name">Basil</span>
+          <span class="crop-tab-kind">Herb &middot; Easy</span>
+        </a>
+        <a class="crop-tab" href="#crop-lettuce" data-crop="crop-lettuce">
+          <span class="crop-tab-name">Lettuce</span>
+          <span class="crop-tab-kind">Leafy green &middot; Easy</span>
+        </a>
+        <a class="crop-tab" href="#crop-tomatoes" data-crop="crop-tomatoes">
+          <span class="crop-tab-name">Cherry Tomatoes</span>
+          <span class="crop-tab-kind">Fruiting vegetable &middot; Moderate</span>
+        </a>
+        <a class="crop-tab" href="#crop-peppers" data-crop="crop-peppers">
+          <span class="crop-tab-name">Peppers</span>
+          <span class="crop-tab-kind">Fruiting vegetable &middot; Moderate</span>
+        </a>
+        <a class="crop-tab" href="#crop-mint" data-crop="crop-mint">
+          <span class="crop-tab-name">Mint</span>
+          <span class="crop-tab-kind">Herb &middot; Easy</span>
+        </a>
+      </div>
+
+      <div class="crop-panels fade-in">
+
+        <article class="crop-panel" id="crop-basil" aria-labelledby="crop-basil-title">
+          <header class="crop-panel-head">
+            <span class="card-tag">Herb &middot; Easy</span>
+            <h3 class="crop-panel-title" id="crop-basil-title">Basil</h3>
+            <p class="crop-panel-tagline">Fast, fragrant, and forgiving. A great first plant for a container.</p>
+          </header>
+
+          <dl class="crop-facts">
+            <div><dt>Light</dt><dd>6–8 hours of direct sun, or a grow light 12–14 hours a day</dd></div>
+            <div><dt>Container</dt><dd>At least 8 in. wide and 8 in. deep, with drainage holes</dd></div>
+            <div><dt>Water</dt><dd>When the top inch of soil feels dry</dd></div>
+            <div><dt>First harvest</dt><dd>About 6–8 weeks from seed</dd></div>
+          </dl>
+
+          <div class="crop-steps">
+            <div class="crop-block">
+              <h4>Planting</h4>
+              <ol>
+                  <li>Fill the container with moist potting mix, stopping about an inch below the rim.</li>
+                  <li>Sprinkle a few seeds over the surface and cover them with about ¼ inch of soil.</li>
+                  <li>Keep the soil moist and warm (above 70°F). Seedlings usually sprout in 5–10 days.</li>
+                  <li>When seedlings have two sets of true leaves, thin to the strongest one to three plants.</li>
+              </ol>
+            </div>
+            <div class="crop-block">
+              <h4>Everyday care</h4>
+              <ul>
+                  <li>Water at the base when the top inch of soil is dry. Never let the pot sit in standing water.</li>
+                  <li>Basil hates the cold. Keep it away from drafty windows, and bring it inside if nights dip below 50°F.</li>
+                  <li>Feed with a balanced liquid fertilizer at half strength every 3–4 weeks.</li>
+              </ul>
+            </div>
+            <div class="crop-block">
+              <h4>Harvesting</h4>
+              <ul>
+                  <li>Start picking once the plant has six to eight leaves.</li>
+                  <li>Pinch each stem just above a pair of leaves. Two new shoots grow from that spot.</li>
+                  <li>Pinch off flower buds as they appear, and never take more than a third of the plant at once.</li>
+              </ul>
+            </div>
+            <div class="crop-block">
+              <h4>Watch out for</h4>
+              <ul>
+                  <li><strong>Yellow leaves:</strong> usually too much water.</li>
+                  <li><strong>Tall, pale, leggy plant:</strong> not enough light.</li>
+                  <li><strong>Black, limp leaves:</strong> the plant got chilled. Move it somewhere warmer.</li>
+              </ul>
+            </div>
+          </div>
+
+          <p class="crop-tip"><strong>Tip:</strong> Pinching the tips early makes basil grow bushy instead of tall.</p>
+        </article>
+
+        <article class="crop-panel" id="crop-lettuce" aria-labelledby="crop-lettuce-title">
+          <header class="crop-panel-head">
+            <span class="card-tag">Leafy green &middot; Easy</span>
+            <h3 class="crop-panel-title" id="crop-lettuce-title">Lettuce</h3>
+            <p class="crop-panel-tagline">A cool-weather crop that grows in a shallow pot and keeps giving.</p>
+          </header>
+
+          <dl class="crop-facts">
+            <div><dt>Light</dt><dd>4–6 hours of sun. Afternoon shade helps in warm weather</dd></div>
+            <div><dt>Container</dt><dd>At least 6 in. deep. Wide and shallow is ideal</dd></div>
+            <div><dt>Water</dt><dd>Keep soil evenly moist, like a wrung-out sponge</dd></div>
+            <div><dt>First harvest</dt><dd>About 4–6 weeks from seed</dd></div>
+          </dl>
+
+          <div class="crop-steps">
+            <div class="crop-block">
+              <h4>Planting</h4>
+              <ol>
+                  <li>Fill the container with moist potting mix.</li>
+                  <li>Scatter seeds thinly over the surface and cover with a light dusting of soil, about ¼ inch.</li>
+                  <li>Water gently. Seeds sprout in 2–7 days and do best at 60–70°F.</li>
+                  <li>Thin seedlings to about 4 inches apart. The thinnings make tasty baby greens.</li>
+              </ol>
+            </div>
+            <div class="crop-block">
+              <h4>Everyday care</h4>
+              <ul>
+                  <li>Water gently every day or two. The soil should never dry out completely.</li>
+                  <li>Lettuce turns bitter in heat. Move the pot to shade when temperatures climb above about 75°F.</li>
+                  <li>Feed lightly with a balanced fertilizer every 2–3 weeks.</li>
+              </ul>
+            </div>
+            <div class="crop-block">
+              <h4>Harvesting</h4>
+              <ul>
+                  <li>Pick the outer leaves when they are 4–6 inches long and leave the center to keep growing.</li>
+                  <li>Or cut the whole plant about an inch above the soil. It often regrows for a second harvest.</li>
+                  <li>Rinse and eat soon after picking for the best flavor.</li>
+              </ul>
+            </div>
+            <div class="crop-block">
+              <h4>Watch out for</h4>
+              <ul>
+                  <li><strong>Bitter taste or a tall center stalk:</strong> too hot. Pull it up and replant.</li>
+                  <li><strong>Holes in leaves:</strong> slugs or caterpillars. Pick them off by hand.</li>
+                  <li><strong>Wilting in moist soil:</strong> too hot, or the pot is not draining.</li>
+              </ul>
+            </div>
+          </div>
+
+          <p class="crop-tip"><strong>Tip:</strong> Sow a small new batch every two weeks for a steady supply of fresh leaves.</p>
+        </article>
+
+        <article class="crop-panel" id="crop-tomatoes" aria-labelledby="crop-tomatoes-title">
+          <header class="crop-panel-head">
+            <span class="card-tag">Fruiting vegetable &middot; Moderate</span>
+            <h3 class="crop-panel-title" id="crop-tomatoes-title">Cherry Tomatoes</h3>
+            <p class="crop-panel-tagline">The most rewarding crop in a container, with a little more patience.</p>
+          </header>
+
+          <dl class="crop-facts">
+            <div><dt>Light</dt><dd>6–8+ hours of direct sun. Indoors, it needs a strong grow light</dd></div>
+            <div><dt>Container</dt><dd>At least 5 gallons, about 12 in. wide and deep</dd></div>
+            <div><dt>Water</dt><dd>Deeply, whenever the top inch is dry. Be consistent</dd></div>
+            <div><dt>First harvest</dt><dd>About 60–80 days after transplanting a seedling</dd></div>
+          </dl>
+
+          <div class="crop-steps">
+            <div class="crop-block">
+              <h4>Planting</h4>
+              <ol>
+                  <li>Choose a compact “patio” or “dwarf” cherry variety and a pot with drainage holes. Fill it with potting mix.</li>
+                  <li>Start with a healthy seedling, or start seeds indoors 6–8 weeks before moving them outside.</li>
+                  <li>Plant deep: bury the stem up to the first set of leaves. New roots grow along the buried stem.</li>
+                  <li>Add a stake or small cage when you plant, so you do not damage roots later.</li>
+                  <li>Outdoors, wait until frost danger has passed (usually early to mid May in coastal Connecticut) and nights stay above 50°F.</li>
+              </ol>
+            </div>
+            <div class="crop-block">
+              <h4>Everyday care</h4>
+              <ul>
+                  <li>Water deeply until it drains out the bottom, then wait until the top inch dries before watering again.</li>
+                  <li>Once flowers appear, feed with a tomato fertilizer, following the label.</li>
+                  <li>Growing indoors? Gently shake the flower clusters every day so they pollinate.</li>
+              </ul>
+            </div>
+            <div class="crop-block">
+              <h4>Harvesting</h4>
+              <ul>
+                  <li>Pick when the fruit is fully colored and comes off with a gentle twist.</li>
+                  <li>Pick often. Regular harvesting encourages the plant to make more.</li>
+              </ul>
+            </div>
+            <div class="crop-block">
+              <h4>Watch out for</h4>
+              <ul>
+                  <li><strong>Dark, sunken patch on the bottom of the fruit:</strong> uneven watering (blossom end rot).</li>
+                  <li><strong>Cracked fruit:</strong> also uneven watering. Keep a steady routine.</li>
+                  <li><strong>Flowers dropping without fruit:</strong> too hot, too cold, or not pollinated.</li>
+              </ul>
+            </div>
+          </div>
+
+          <p class="crop-tip"><strong>Tip:</strong> A steady watering routine is the biggest key to sweet, uncracked tomatoes.</p>
+        </article>
+
+        <article class="crop-panel" id="crop-peppers" aria-labelledby="crop-peppers-title">
+          <header class="crop-panel-head">
+            <span class="card-tag">Fruiting vegetable &middot; Moderate</span>
+            <h3 class="crop-panel-title" id="crop-peppers-title">Peppers</h3>
+            <p class="crop-panel-tagline">Compact plants that can keep producing for months once they get going.</p>
+          </header>
+
+          <dl class="crop-facts">
+            <div><dt>Light</dt><dd>6–8 hours of direct sun. Peppers love warmth (70–85°F)</dd></div>
+            <div><dt>Container</dt><dd>At least 3 gallons, about 10–12 in. wide</dd></div>
+            <div><dt>Water</dt><dd>When the top inch is dry. Do not let it stay soggy</dd></div>
+            <div><dt>First harvest</dt><dd>About 60–90 days after transplanting a seedling</dd></div>
+          </dl>
+
+          <div class="crop-steps">
+            <div class="crop-block">
+              <h4>Planting</h4>
+              <ol>
+                  <li>Start with a seedling, or sow seeds ¼ inch deep indoors 8–10 weeks before moving them outside. Pepper seeds are slow and may take 1–3 weeks to sprout in warm soil.</li>
+                  <li>Move seedlings to their pot once they have several sets of leaves and nights stay above 55°F.</li>
+                  <li>Plant at the same depth as in the starter pot, in potting mix, in a container with drainage holes.</li>
+                  <li>Add a stake for taller varieties.</li>
+              </ol>
+            </div>
+            <div class="crop-block">
+              <h4>Everyday care</h4>
+              <ul>
+                  <li>Let the top inch of soil dry between waterings. Overwatering is the most common mistake.</li>
+                  <li>Feed lightly with a balanced fertilizer once flowers appear. Too much nitrogen makes lots of leaves and few peppers.</li>
+                  <li>Growing indoors? Gently shake the plant now and then to help the flowers pollinate.</li>
+              </ul>
+            </div>
+            <div class="crop-block">
+              <h4>Harvesting</h4>
+              <ul>
+                  <li>Cut peppers from the plant with scissors, leaving a bit of stem. Pulling can break branches.</li>
+                  <li>Green peppers are ready to eat. Left longer, they ripen to red, yellow, or orange and get sweeter.</li>
+                  <li>Picking regularly encourages more peppers.</li>
+              </ul>
+            </div>
+            <div class="crop-block">
+              <h4>Watch out for</h4>
+              <ul>
+                  <li><strong>Flowers dropping:</strong> too hot (over about 90°F), too cool at night, or the plant is stressed.</li>
+                  <li><strong>Curling leaves with tiny insects:</strong> aphids. Rinse them off with a spray of water.</li>
+                  <li><strong>Soft, dark patch on the bottom of the fruit:</strong> uneven watering.</li>
+              </ul>
+            </div>
+          </div>
+
+          <p class="crop-tip"><strong>Tip:</strong> If you grow a hot variety, wear gloves and wash your hands before touching your eyes.</p>
+        </article>
+
+        <article class="crop-panel" id="crop-mint" aria-labelledby="crop-mint-title">
+          <header class="crop-panel-head">
+            <span class="card-tag">Herb &middot; Easy</span>
+            <h3 class="crop-panel-title" id="crop-mint-title">Mint</h3>
+            <p class="crop-panel-tagline">Nearly unstoppable, but give it a pot of its own.</p>
+          </header>
+
+          <dl class="crop-facts">
+            <div><dt>Light</dt><dd>3–6 hours of sun. Partial shade is fine</dd></div>
+            <div><dt>Container</dt><dd>10–12 in. wide, with mint planted alone in it</dd></div>
+            <div><dt>Water</dt><dd>Keep evenly moist, but not soggy</dd></div>
+            <div><dt>First harvest</dt><dd>A few weeks after planting a starter plant</dd></div>
+          </dl>
+
+          <div class="crop-steps">
+            <div class="crop-block">
+              <h4>Planting</h4>
+              <ol>
+                  <li>Start with a small plant or a stem cutting rooted in water. Mint seeds are slow and unreliable.</li>
+                  <li>Give mint its own pot. Its roots spread fast and crowd out other plants.</li>
+                  <li>Plant in potting mix at the same depth as the starter pot, and water well.</li>
+                  <li>Set it somewhere bright but out of harsh afternoon sun.</li>
+              </ol>
+            </div>
+            <div class="crop-block">
+              <h4>Everyday care</h4>
+              <ul>
+                  <li>Keep the soil moist. Mint wilts quickly when dry, but usually perks up after a drink.</li>
+                  <li>Trim often to keep it full and bushy.</li>
+                  <li>Feed lightly once a month while it is growing. Re-pot or divide it once a year when roots fill the pot.</li>
+                  <li>Outdoors, set the pot on a hard surface so roots cannot escape through the drainage holes into the ground.</li>
+              </ul>
+            </div>
+            <div class="crop-block">
+              <h4>Harvesting</h4>
+              <ul>
+                  <li>Snip stems just above a pair of leaves once the plant is about 6 inches tall.</li>
+                  <li>Pinch off flower buds. Leaves taste best before the plant flowers.</li>
+              </ul>
+            </div>
+            <div class="crop-block">
+              <h4>Watch out for</h4>
+              <ul>
+                  <li><strong>Tall, pale stems:</strong> not enough light.</li>
+                  <li><strong>Orange dust or spots under the leaves:</strong> rust. Remove affected leaves and water at the soil, not the leaves.</li>
+                  <li><strong>Tiny insects on new growth:</strong> aphids. Rinse them off with a spray of water.</li>
+              </ul>
+            </div>
+          </div>
+
+          <p class="crop-tip"><strong>Tip:</strong> Mint spreads fast. Keep it in its own pot and never plant it in the ground.</p>
+        </article>
+
+      </div>
+
+      <p class="crop-note fade-in">
+        General guidance for growing in containers in Connecticut. Sizes and
+        timing are approximate and vary with the variety, your window or yard,
+        and the weather.
+      </p>
 
     </div>
   </section>

@@ -611,6 +611,186 @@ section { overflow: hidden; }
 #fundraising { background: #f0e9d8; }
 
 /* ============================================================
+   CROP CARE GUIDES — pick a crop, read its guide
+   Without JavaScript every guide is shown in turn and the buttons are plain
+   jump links. main.js adds the tab behaviour (see "Crop care guides").
+============================================================ */
+#crop-guides { background: var(--white); }
+
+.crop-tabs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: .75rem;
+  margin-bottom: 1.5rem;
+}
+
+.crop-tab {
+  display: flex;
+  flex-direction: column;
+  gap: .15rem;
+  padding: .95rem 1.1rem;
+  background: var(--cream);
+  border: 1.5px solid var(--cream-dark);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: transform var(--transition), border-color var(--transition),
+              background var(--transition), color var(--transition);
+}
+
+.crop-tab:hover {
+  transform: translateY(-2px);
+  border-color: var(--green-light);
+}
+
+.crop-tab:focus-visible {
+  outline: 3px solid var(--red);
+  outline-offset: 2px;
+}
+
+.crop-tab-name {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--text-dark);
+}
+
+.crop-tab-kind {
+  font-size: .68rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--text-mid);
+}
+
+.crop-tab[aria-selected="true"] {
+  background: var(--green);
+  border-color: var(--green);
+  box-shadow: var(--shadow);
+}
+.crop-tab[aria-selected="true"] .crop-tab-name { color: var(--cream); }
+.crop-tab[aria-selected="true"] .crop-tab-kind { color: rgba(245,240,232,.75); }
+
+.crop-panels {
+  background: var(--cream);
+  border: 1px solid var(--cream-dark);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.crop-panel[hidden] { display: none; }
+
+/* Only matters with JavaScript off, when every guide is visible at once. */
+.crop-panel:not([hidden]) ~ .crop-panel:not([hidden]) {
+  margin-top: 2.5rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--cream-dark);
+}
+
+.crop-panels.js-tabs .crop-panel:not([hidden]) {
+  animation: cropIn .35s ease;
+}
+
+@keyframes cropIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.crop-panel:focus-visible {
+  outline: 3px solid var(--red);
+  outline-offset: 6px;
+  border-radius: var(--radius);
+}
+
+.crop-panel-title {
+  font-size: clamp(1.7rem, 3.6vw, 2.3rem);
+  color: var(--green);
+  margin-bottom: .35rem;
+}
+
+.crop-panel-tagline {
+  font-size: 1.02rem;
+  color: var(--text-mid);
+  max-width: 560px;
+}
+
+.crop-facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin: 1.6rem 0 2rem;
+}
+
+.crop-facts > div {
+  background: var(--white);
+  border: 1px solid var(--cream-dark);
+  border-radius: var(--radius);
+  padding: .9rem 1rem;
+}
+
+.crop-facts dt {
+  font-size: .68rem;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: .25rem;
+}
+
+.crop-facts dd {
+  font-size: .92rem;
+  line-height: 1.5;
+}
+
+.crop-steps {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.75rem 2.75rem;
+}
+
+.crop-block h4 {
+  font-size: 1.12rem;
+  color: var(--green);
+  margin-bottom: .6rem;
+}
+
+.crop-block ol,
+.crop-block ul {
+  padding-left: 1.25rem;
+}
+
+.crop-block li {
+  font-size: .93rem;
+  line-height: 1.6;
+  color: var(--text-mid);
+  margin-bottom: .55rem;
+}
+
+.crop-block li::marker { color: var(--green-light); font-weight: 600; }
+.crop-block li strong { color: var(--text-dark); }
+
+.crop-tip {
+  margin-top: 1.75rem;
+  padding: .9rem 1.2rem;
+  background: rgba(45,80,22,.08);
+  border-left: 4px solid var(--green);
+  border-radius: var(--radius);
+  font-size: .93rem;
+}
+
+.crop-note {
+  margin-top: 1.25rem;
+  font-size: .82rem;
+  color: var(--text-mid);
+  max-width: 640px;
+}
+
+@media (max-width: 780px) {
+  .crop-steps { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
    FUNDRAISING — donate callout + events calendar
 ============================================================ */
 .donate-callout {
