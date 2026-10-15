@@ -743,6 +743,14 @@ section { overflow: hidden; }
   line-height: 1.5;
 }
 
+.crop-drops {
+  display: inline-block;
+  margin-right: .4rem;
+  font-size: .85rem;
+  letter-spacing: .08em;
+  white-space: nowrap;
+}
+
 .crop-steps {
   display: grid;
   grid-template-columns: repeat(2, 1fr);

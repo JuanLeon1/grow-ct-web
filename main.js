@@ -366,7 +366,20 @@ const FUNDRAISING_EVENTS = [
 
   const initial = fromHash();
   select(initial || tabs[0]);
-  /* Opening the page on /#crop-basil: the browser jumped to the guide before
-     the other four were hidden, so scroll back to the picker. */
-  if (initial) tabList.scrollIntoView();
+  if (initial) {
+    /* Opening the page on /#crop-spinach. The browser scrolls to that guide
+       itself once the page has loaded, and the site's smooth scrolling makes
+       that a slow glide that can land the guide under the fixed navbar. So,
+       just for this first jump, turn smooth scrolling off, then line the
+       picker up once the browser has finished. */
+    const root = document.documentElement;
+    root.style.scrollBehavior = 'auto';
+    tabList.scrollIntoView();
+    const settle = () => setTimeout(() => {
+      tabList.scrollIntoView();
+      root.style.scrollBehavior = '';
+    }, 150);
+    if (document.readyState === 'complete') settle();
+    else window.addEventListener('load', settle, { once: true });
+  }
 })();
