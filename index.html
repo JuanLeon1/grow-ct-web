@@ -44,6 +44,7 @@
       <ul class="nav-links" id="navLinks">
         <li><a href="#mission">Mission</a></li>
         <li><a href="#container-garden-classes">Container Garden Classes</a></li>
+        <li><a href="#crop-guides">Crop Guides</a></li>
         <li><a href="#fundraising">Fundraising</a></li>
         <li><a href="#shop">Shop</a></li>
         <li><a href="#club-signup">Club Signup &amp; Contact</a></li>
@@ -215,6 +216,554 @@
       <div class="coming-soon-bar fade-in">
         Coming soon — class details, schedule, and registration will appear here.
       </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 3b: CROP CARE GUIDES
+       Pick a crop, see its guide. Every guide is written out in full below, so
+       the page still works without JavaScript (all of them show, one after
+       another, and the buttons become jump links). main.js turns them into tabs.
+
+       Sun hours, season and watering come from the club's
+       "Small pots (6-8 in)" table. The planting, care, harvest and
+       watch-out text is draft guidance: please review it.
+
+       TO EDIT a guide, find its <article class="crop-panel"> below.
+       TO SWAP a crop, change its button AND its article together: the button's
+       href / data-crop and the article's id must all match.
+  ============================================================ -->
+  <section id="crop-guides" class="card-section">
+    <div class="container">
+
+      <div class="card-section-header fade-in">
+        <p class="section-label">Care Guides</p>
+        <h2 class="section-heading">Pick a Crop, Start Growing</h2>
+        <p class="section-sub">
+          Choose a plant to see how to pot it, care for it, and harvest it.
+        </p>
+      </div>
+
+      <div class="crop-tabs fade-in" id="cropTabs">
+        <a class="crop-tab" href="#crop-chives" data-crop="crop-chives">
+          <span class="crop-tab-name">Chives</span>
+          <span class="crop-tab-kind">Herb</span>
+        </a>
+        <a class="crop-tab" href="#crop-thyme" data-crop="crop-thyme">
+          <span class="crop-tab-name">Thyme</span>
+          <span class="crop-tab-kind">Herb</span>
+        </a>
+        <a class="crop-tab" href="#crop-oregano" data-crop="crop-oregano">
+          <span class="crop-tab-name">Oregano</span>
+          <span class="crop-tab-kind">Herb</span>
+        </a>
+        <a class="crop-tab" href="#crop-basil" data-crop="crop-basil">
+          <span class="crop-tab-name">Basil</span>
+          <span class="crop-tab-kind">Herb</span>
+        </a>
+        <a class="crop-tab" href="#crop-cilantro" data-crop="crop-cilantro">
+          <span class="crop-tab-name">Cilantro</span>
+          <span class="crop-tab-kind">Herb</span>
+        </a>
+        <a class="crop-tab" href="#crop-parsley" data-crop="crop-parsley">
+          <span class="crop-tab-name">Parsley</span>
+          <span class="crop-tab-kind">Herb</span>
+        </a>
+        <a class="crop-tab" href="#crop-spinach" data-crop="crop-spinach">
+          <span class="crop-tab-name">Spinach</span>
+          <span class="crop-tab-kind">Leafy green</span>
+        </a>
+        <a class="crop-tab" href="#crop-lettuce" data-crop="crop-lettuce">
+          <span class="crop-tab-name">Lettuce</span>
+          <span class="crop-tab-kind">Leafy green</span>
+        </a>
+        <a class="crop-tab" href="#crop-arugula" data-crop="crop-arugula">
+          <span class="crop-tab-name">Arugula</span>
+          <span class="crop-tab-kind">Leafy green</span>
+        </a>
+      </div>
+
+      <div class="crop-panels fade-in">
+
+        <article class="crop-panel" id="crop-chives" aria-labelledby="crop-chives-title">
+          <header class="crop-panel-head">
+            <span class="card-tag">Herb</span>
+            <h3 class="crop-panel-title" id="crop-chives-title">Chives</h3>
+            <p class="crop-panel-tagline">Mild onion flavor from a tough little plant that grows back after every trim.</p>
+          </header>
+
+          <dl class="crop-facts">
+            <div><dt>Light</dt><dd>4–6 hours of sun a day</dd></div>
+            <div><dt>Water</dt><dd><span class="crop-drops" aria-hidden="true">💧💧</span>Medium: 2–3 times a week, or when the top layer of soil feels dry</dd></div>
+            <div><dt>Best seasons</dt><dd>Spring + Fall</dd></div>
+          </dl>
+
+          <div class="crop-steps">
+            <div class="crop-block">
+              <h4>Planting</h4>
+              <ol>
+                <li>Fill the pot with moist potting mix. It needs drainage holes.</li>
+                <li>Sow seeds about ¼ inch deep, or plant a small starter clump.</li>
+                <li>Keep the soil moist. Seeds are slow and can take 1–2 weeks to sprout.</li>
+                <li>Leave the sprouts in a clump. Chives grow well crowded together.</li>
+              </ol>
+            </div>
+            <div class="crop-block">
+              <h4>Everyday care</h4>
+              <ul>
+                <li>Water 2–3 times a week, or whenever the top layer of soil feels dry.</li>
+                <li>Chives like cool weather, so spring and fall are their best seasons. Growth can slow in midsummer heat.</li>
+                <li>Feed lightly with a balanced fertilizer about once a month.</li>
+              </ul>
+            </div>
+            <div class="crop-block">
+              <h4>Harvesting</h4>
+              <ul>
+                <li>Start snipping when the leaves are about 6 inches tall.</li>
+                <li>Cut with scissors 1–2 inches above the soil, taking the outer leaves first.</li>
+                <li>Never cut more than a third of the plant at once. It grows back from the base.</li>
+              </ul>
+            </div>
+            <div class="crop-block">
+              <h4>Watch out for</h4>
+              <ul>
+                <li><strong>Yellow tips:</strong> usually too much water, or cutting too much at once.</li>
+                <li><strong>Thin, floppy leaves:</strong> not enough light.</li>
+                <li><strong>Tiny insects on new growth:</strong> aphids. Rinse them off with a spray of water.</li>
+              </ul>
+            </div>
+          </div>
+
+          <p class="crop-tip"><strong>Tip:</strong> Snip, don&#x27;t pull. Chives regrow from the base, so you can harvest again and again.</p>
+        </article>
+
+        <article class="crop-panel" id="crop-thyme" aria-labelledby="crop-thyme-title">
+          <header class="crop-panel-head">
+            <span class="card-tag">Herb</span>
+            <h3 class="crop-panel-title" id="crop-thyme-title">Thyme</h3>
+            <p class="crop-panel-tagline">A tough, aromatic herb that prefers to be a little neglected.</p>
+          </header>
+
+          <dl class="crop-facts">
+            <div><dt>Light</dt><dd>8–10 hours of sun a day</dd></div>
+            <div><dt>Water</dt><dd><span class="crop-drops" aria-hidden="true">💧</span>Light: about once a week. Let the soil dry out in between</dd></div>
+            <div><dt>Best seasons</dt><dd>Summer</dd></div>
+          </dl>
+
+          <div class="crop-steps">
+            <div class="crop-block">
+              <h4>Planting</h4>
+              <ol>
+                <li>Use a pot with drainage holes and a light, well-draining potting mix.</li>
+                <li>A small starter plant is the easiest way to begin. Thyme seeds are tiny and slow, often 2–4 weeks to sprout.</li>
+                <li>If you use seeds, press them onto the surface and barely cover them.</li>
+                <li>Plant at the same depth as the starter pot, water once, and set it in your sunniest spot.</li>
+              </ol>
+            </div>
+            <div class="crop-block">
+              <h4>Everyday care</h4>
+              <ul>
+                <li>Water about once a week. Thyme dislikes wet soil more than dry soil.</li>
+                <li>Give it as much sun as you can: a south-facing window or a grow light.</li>
+                <li>Skip fertilizer, or use only a very light feeding once or twice a season.</li>
+              </ul>
+            </div>
+            <div class="crop-block">
+              <h4>Harvesting</h4>
+              <ul>
+                <li>Start picking once the plant is 4–6 inches tall.</li>
+                <li>Snip stems just above a set of leaves. Avoid cutting into the hard, woody base.</li>
+                <li>Never take more than a third of the plant at once.</li>
+              </ul>
+            </div>
+            <div class="crop-block">
+              <h4>Watch out for</h4>
+              <ul>
+                <li><strong>Brown, mushy stems at the base:</strong> too much water.</li>
+                <li><strong>Sparse, stretched-out growth:</strong> not enough light.</li>
+                <li><strong>Woody lower stems:</strong> normal with age. Trim regularly to keep it full.</li>
+              </ul>
+            </div>
+          </div>
+
+          <p class="crop-tip"><strong>Tip:</strong> When in doubt, wait another day to water. Thyme forgives dry soil far more easily than wet soil.</p>
+        </article>
+
+        <article class="crop-panel" id="crop-oregano" aria-labelledby="crop-oregano-title">
+          <header class="crop-panel-head">
+            <span class="card-tag">Herb</span>
+            <h3 class="crop-panel-title" id="crop-oregano-title">Oregano</h3>
+            <p class="crop-panel-tagline">Hardy and flavorful, and happiest with lots of sun and little water.</p>
+          </header>
+
+          <dl class="crop-facts">
+            <div><dt>Light</dt><dd>8–10 hours of sun a day</dd></div>
+            <div><dt>Water</dt><dd><span class="crop-drops" aria-hidden="true">💧</span>Light: water when the top inch of soil is dry</dd></div>
+            <div><dt>Best seasons</dt><dd>Summer</dd></div>
+          </dl>
+
+          <div class="crop-steps">
+            <div class="crop-block">
+              <h4>Planting</h4>
+              <ol>
+                <li>Use a pot with drainage holes and a well-draining potting mix.</li>
+                <li>Plant a small starter plant, or sprinkle seeds on the surface and barely cover them. Seeds usually sprout in 1–2 weeks.</li>
+                <li>Keep one strong plant per pot.</li>
+                <li>Water well after planting, then set it in your sunniest spot.</li>
+              </ol>
+            </div>
+            <div class="crop-block">
+              <h4>Everyday care</h4>
+              <ul>
+                <li>Water lightly, only when the top inch of soil is dry.</li>
+                <li>Oregano needs lots of sun. Use a south-facing window or a grow light.</li>
+                <li>Go easy on fertilizer. Overfed oregano grows quickly but tastes weaker.</li>
+                <li>Pinch the tips now and then to keep it bushy.</li>
+              </ul>
+            </div>
+            <div class="crop-block">
+              <h4>Harvesting</h4>
+              <ul>
+                <li>Start picking when stems are 4–6 inches long.</li>
+                <li>Snip just above a pair of leaves. Flavor is strongest before the plant flowers.</li>
+                <li>Pinch off flower buds, and never take more than a third of the plant at once.</li>
+              </ul>
+            </div>
+            <div class="crop-block">
+              <h4>Watch out for</h4>
+              <ul>
+                <li><strong>Yellow, droopy leaves:</strong> too much water.</li>
+                <li><strong>Long, sparse stems:</strong> not enough light.</li>
+                <li><strong>Weak flavor:</strong> too much fertilizer or too little sun.</li>
+              </ul>
+            </div>
+          </div>
+
+          <p class="crop-tip"><strong>Tip:</strong> Pinching the tips from the start makes oregano grow fuller and gives you more to harvest.</p>
+        </article>
+
+        <article class="crop-panel" id="crop-basil" aria-labelledby="crop-basil-title">
+          <header class="crop-panel-head">
+            <span class="card-tag">Herb</span>
+            <h3 class="crop-panel-title" id="crop-basil-title">Basil</h3>
+            <p class="crop-panel-tagline">Fast, fragrant, and thirsty. Give it sun, warmth, and plenty of water.</p>
+          </header>
+
+          <dl class="crop-facts">
+            <div><dt>Light</dt><dd>8–10 hours of sun a day, or a grow light</dd></div>
+            <div><dt>Water</dt><dd><span class="crop-drops" aria-hidden="true">💧💧💧</span>Heavy: every 1–2 days. The soil should stay damp, never soggy</dd></div>
+            <div><dt>Best seasons</dt><dd>Spring + Summer</dd></div>
+          </dl>
+
+          <div class="crop-steps">
+            <div class="crop-block">
+              <h4>Planting</h4>
+              <ol>
+                <li>Fill the pot with moist potting mix, stopping about an inch below the rim. It needs drainage holes.</li>
+                <li>Sprinkle a few seeds over the surface and cover them with about ¼ inch of soil.</li>
+                <li>Keep the soil moist and warm (above 70°F). Seedlings usually sprout in 5–10 days.</li>
+                <li>When seedlings have two sets of true leaves, thin to the strongest one to three plants.</li>
+              </ol>
+            </div>
+            <div class="crop-block">
+              <h4>Everyday care</h4>
+              <ul>
+                <li>Water every 1–2 days. Check with a finger: if the top inch is dry, it is time.</li>
+                <li>Basil hates the cold. Keep it away from drafty windows, and bring it inside if nights dip below 50°F.</li>
+                <li>Feed with a balanced liquid fertilizer at half strength every 3–4 weeks.</li>
+              </ul>
+            </div>
+            <div class="crop-block">
+              <h4>Harvesting</h4>
+              <ul>
+                <li>Start picking once the plant has six to eight leaves.</li>
+                <li>Pinch each stem just above a pair of leaves. Two new shoots grow from that spot.</li>
+                <li>Pinch off flower buds as they appear, and never take more than a third of the plant at once.</li>
+              </ul>
+            </div>
+            <div class="crop-block">
+              <h4>Watch out for</h4>
+              <ul>
+                <li><strong>Drooping leaves:</strong> usually thirsty. Basil wilts fast when dry.</li>
+                <li><strong>Yellow leaves:</strong> the soil is staying soggy. Check that the pot drains.</li>
+                <li><strong>Tall, pale, leggy plant:</strong> not enough light.</li>
+                <li><strong>Black, limp leaves:</strong> the plant got chilled. Move it somewhere warmer.</li>
+              </ul>
+            </div>
+          </div>
+
+          <p class="crop-tip"><strong>Tip:</strong> Pinching the tips early makes basil grow bushy instead of tall.</p>
+        </article>
+
+        <article class="crop-panel" id="crop-cilantro" aria-labelledby="crop-cilantro-title">
+          <header class="crop-panel-head">
+            <span class="card-tag">Herb</span>
+            <h3 class="crop-panel-title" id="crop-cilantro-title">Cilantro</h3>
+            <p class="crop-panel-tagline">Fast-growing and fresh-tasting, and happiest in mild weather.</p>
+          </header>
+
+          <dl class="crop-facts">
+            <div><dt>Light</dt><dd>4–6 hours of sun a day</dd></div>
+            <div><dt>Water</dt><dd><span class="crop-drops" aria-hidden="true">💧💧</span>Medium: water when the top inch of soil is dry</dd></div>
+            <div><dt>Best seasons</dt><dd>Spring, Summer + Fall</dd></div>
+          </dl>
+
+          <div class="crop-steps">
+            <div class="crop-block">
+              <h4>Planting</h4>
+              <ol>
+                <li>Fill the pot with moist potting mix. It needs drainage holes.</li>
+                <li>Sow seeds about ¼ inch deep and an inch apart. They usually sprout in 7–10 days.</li>
+                <li>Plant seeds right in the pot. Cilantro does not like being moved once it has sprouted.</li>
+                <li>Thin seedlings to about 2–3 inches apart.</li>
+              </ol>
+            </div>
+            <div class="crop-block">
+              <h4>Everyday care</h4>
+              <ul>
+                <li>Water when the top inch of soil is dry, and do not let the pot dry out completely.</li>
+                <li>Cilantro prefers mild weather. In hot spells, move it out of the afternoon sun.</li>
+                <li>Feed lightly with a balanced fertilizer every 3–4 weeks.</li>
+              </ul>
+            </div>
+            <div class="crop-block">
+              <h4>Harvesting</h4>
+              <ul>
+                <li>Start picking when the plant is about 6 inches tall, usually 3–4 weeks after sprouting.</li>
+                <li>Cut outer stems at the base and leave the center to keep growing.</li>
+                <li>Never take more than a third of the plant at once.</li>
+              </ul>
+            </div>
+            <div class="crop-block">
+              <h4>Watch out for</h4>
+              <ul>
+                <li><strong>A tall, wispy stalk with feathery leaves:</strong> the plant is going to seed (bolting), usually from heat. Pick what you can and sow again.</li>
+                <li><strong>Yellow leaves:</strong> too much water.</li>
+                <li><strong>Stretched, pale stems:</strong> not enough light.</li>
+              </ul>
+            </div>
+          </div>
+
+          <p class="crop-tip"><strong>Tip:</strong> Sow a few new seeds every 2–3 weeks so you always have fresh cilantro coming along.</p>
+        </article>
+
+        <article class="crop-panel" id="crop-parsley" aria-labelledby="crop-parsley-title">
+          <header class="crop-panel-head">
+            <span class="card-tag">Herb</span>
+            <h3 class="crop-panel-title" id="crop-parsley-title">Parsley</h3>
+            <p class="crop-panel-tagline">Slow to start, then generous for months.</p>
+          </header>
+
+          <dl class="crop-facts">
+            <div><dt>Light</dt><dd>4–6 hours of sun a day</dd></div>
+            <div><dt>Water</dt><dd><span class="crop-drops" aria-hidden="true">💧💧</span>Medium: keep the soil evenly moist</dd></div>
+            <div><dt>Best seasons</dt><dd>Spring</dd></div>
+          </dl>
+
+          <div class="crop-steps">
+            <div class="crop-block">
+              <h4>Planting</h4>
+              <ol>
+                <li>Fill the pot with moist potting mix. It needs drainage holes.</li>
+                <li>Soak seeds in warm water overnight to help them sprout, then sow about ¼ inch deep.</li>
+                <li>Be patient: parsley seeds can take 3–4 weeks to sprout. Keep the soil moist the whole time.</li>
+                <li>Thin to the strongest one or two plants. Parsley has a long root, so avoid moving it later.</li>
+              </ol>
+            </div>
+            <div class="crop-block">
+              <h4>Everyday care</h4>
+              <ul>
+                <li>Keep the soil evenly moist, watering when the top inch starts to dry.</li>
+                <li>Parsley does fine with 4–6 hours of sun and tolerates a little shade.</li>
+                <li>Feed lightly with a balanced fertilizer about once a month.</li>
+              </ul>
+            </div>
+            <div class="crop-block">
+              <h4>Harvesting</h4>
+              <ul>
+                <li>Start picking when stems have three sets of leaves.</li>
+                <li>Cut the outer stems at the base and leave the center to keep growing.</li>
+                <li>Never take more than a third of the plant at once.</li>
+              </ul>
+            </div>
+            <div class="crop-block">
+              <h4>Watch out for</h4>
+              <ul>
+                <li><strong>Yellow outer leaves:</strong> too much water, or just old leaves. Trim them off.</li>
+                <li><strong>No sprouts after two weeks:</strong> keep waiting. Parsley is slow.</li>
+                <li><strong>Striped green caterpillars:</strong> pick them off, or let them be. They turn into swallowtail butterflies.</li>
+              </ul>
+            </div>
+          </div>
+
+          <p class="crop-tip"><strong>Tip:</strong> Be patient with seeds. Parsley can take up to a month to sprout.</p>
+        </article>
+
+        <article class="crop-panel" id="crop-spinach" aria-labelledby="crop-spinach-title">
+          <header class="crop-panel-head">
+            <span class="card-tag">Leafy green</span>
+            <h3 class="crop-panel-title" id="crop-spinach-title">Spinach</h3>
+            <p class="crop-panel-tagline">A cool-weather green that grows well in shallow pots, even in winter.</p>
+          </header>
+
+          <dl class="crop-facts">
+            <div><dt>Light</dt><dd>4–6 hours of sun a day</dd></div>
+            <div><dt>Water</dt><dd><span class="crop-drops" aria-hidden="true">💧💧</span>Medium: keep the soil evenly moist</dd></div>
+            <div><dt>Best seasons</dt><dd>Spring, Fall + Winter</dd></div>
+          </dl>
+
+          <div class="crop-steps">
+            <div class="crop-block">
+              <h4>Planting</h4>
+              <ol>
+                <li>Fill the pot with moist potting mix. It needs drainage holes.</li>
+                <li>Sow seeds about ½ inch deep and an inch apart. They usually sprout in 5–14 days.</li>
+                <li>Spinach sprouts best in cool soil, around 45–70°F. It will not sprout well in heat.</li>
+                <li>Thin seedlings to about 3–4 inches apart. The thinnings make good baby greens.</li>
+              </ol>
+            </div>
+            <div class="crop-block">
+              <h4>Everyday care</h4>
+              <ul>
+                <li>Keep the soil evenly moist, and water when the top inch is dry.</li>
+                <li>Spinach likes cool temperatures, about 50–70°F. Indoors in winter, use a bright window or a grow light.</li>
+                <li>Feed lightly with a balanced fertilizer every 2–3 weeks.</li>
+              </ul>
+            </div>
+            <div class="crop-block">
+              <h4>Harvesting</h4>
+              <ul>
+                <li>Pick baby leaves when they are 3–4 inches long, or let them grow to full size.</li>
+                <li>Take the outer leaves and leave the center to keep growing.</li>
+                <li>Or cut the whole plant about an inch above the soil. It may regrow.</li>
+              </ul>
+            </div>
+            <div class="crop-block">
+              <h4>Watch out for</h4>
+              <ul>
+                <li><strong>A tall center stalk and bitter leaves:</strong> too warm. Pick what you can and sow again somewhere cooler.</li>
+                <li><strong>Yellow lower leaves:</strong> too much water, or the plant needs feeding.</li>
+                <li><strong>Holes or winding trails in leaves:</strong> pests such as slugs or leaf miners. Pick them off by hand.</li>
+              </ul>
+            </div>
+          </div>
+
+          <p class="crop-tip"><strong>Tip:</strong> Spinach loves cool temperatures, which makes it a good choice for fall and winter windowsills.</p>
+        </article>
+
+        <article class="crop-panel" id="crop-lettuce" aria-labelledby="crop-lettuce-title">
+          <header class="crop-panel-head">
+            <span class="card-tag">Leafy green</span>
+            <h3 class="crop-panel-title" id="crop-lettuce-title">Lettuce</h3>
+            <p class="crop-panel-tagline">A cool-weather crop that grows in a shallow pot and keeps giving.</p>
+          </header>
+
+          <dl class="crop-facts">
+            <div><dt>Light</dt><dd>4–6 hours of sun a day</dd></div>
+            <div><dt>Water</dt><dd><span class="crop-drops" aria-hidden="true">💧💧💧</span>Heavy: keep the soil evenly moist and check it every day</dd></div>
+            <div><dt>Best seasons</dt><dd>Spring + Fall</dd></div>
+          </dl>
+
+          <div class="crop-steps">
+            <div class="crop-block">
+              <h4>Planting</h4>
+              <ol>
+                <li>Fill the pot with moist potting mix. It needs drainage holes.</li>
+                <li>Scatter seeds thinly over the surface and cover with a light dusting of soil, about ¼ inch.</li>
+                <li>Water gently. Seeds sprout in 2–7 days and do best at 60–70°F.</li>
+                <li>Thin seedlings to about 4 inches apart. The thinnings make tasty baby greens.</li>
+              </ol>
+            </div>
+            <div class="crop-block">
+              <h4>Everyday care</h4>
+              <ul>
+                <li>Lettuce is thirsty. Check the soil every day, and water gently so it stays evenly moist.</li>
+                <li>Lettuce turns bitter in heat. Move the pot to shade when temperatures climb above about 75°F.</li>
+                <li>Feed lightly with a balanced fertilizer every 2–3 weeks.</li>
+              </ul>
+            </div>
+            <div class="crop-block">
+              <h4>Harvesting</h4>
+              <ul>
+                <li>Pick the outer leaves when they are 4–6 inches long and leave the center to keep growing.</li>
+                <li>Or cut the whole plant about an inch above the soil. It often regrows for a second harvest.</li>
+                <li>Rinse and eat soon after picking for the best flavor.</li>
+              </ul>
+            </div>
+            <div class="crop-block">
+              <h4>Watch out for</h4>
+              <ul>
+                <li><strong>Bitter taste or a tall center stalk:</strong> too hot. Pull it up and replant.</li>
+                <li><strong>Holes in leaves:</strong> slugs or caterpillars. Pick them off by hand.</li>
+                <li><strong>Wilting in moist soil:</strong> too hot, or the pot is not draining.</li>
+              </ul>
+            </div>
+          </div>
+
+          <p class="crop-tip"><strong>Tip:</strong> Sow a small new batch every two weeks for a steady supply of fresh leaves.</p>
+        </article>
+
+        <article class="crop-panel" id="crop-arugula" aria-labelledby="crop-arugula-title">
+          <header class="crop-panel-head">
+            <span class="card-tag">Leafy green</span>
+            <h3 class="crop-panel-title" id="crop-arugula-title">Arugula</h3>
+            <p class="crop-panel-tagline">A peppery, fast-growing green that is ready to pick in about a month.</p>
+          </header>
+
+          <dl class="crop-facts">
+            <div><dt>Light</dt><dd>4–6 hours of sun a day</dd></div>
+            <div><dt>Water</dt><dd><span class="crop-drops" aria-hidden="true">💧💧</span>Medium: water when the top inch of soil is dry</dd></div>
+            <div><dt>Best seasons</dt><dd>Spring, Summer + Fall</dd></div>
+          </dl>
+
+          <div class="crop-steps">
+            <div class="crop-block">
+              <h4>Planting</h4>
+              <ol>
+                <li>Fill the pot with moist potting mix. It needs drainage holes.</li>
+                <li>Scatter seeds over the surface and cover with about ¼ inch of soil.</li>
+                <li>Water gently. Arugula sprouts fast, usually in 3–7 days.</li>
+                <li>Thin seedlings to about 3–4 inches apart. Eat the thinnings as baby greens.</li>
+              </ol>
+            </div>
+            <div class="crop-block">
+              <h4>Everyday care</h4>
+              <ul>
+                <li>Water when the top inch of soil is dry, and keep it from drying out completely.</li>
+                <li>Arugula grows best in cool weather. Heat makes the leaves spicier and sends the plant to seed.</li>
+                <li>Feed lightly with a balanced fertilizer every 2–3 weeks.</li>
+              </ul>
+            </div>
+            <div class="crop-block">
+              <h4>Harvesting</h4>
+              <ul>
+                <li>Pick baby leaves when they are 3–4 inches long, usually 3–4 weeks after sprouting.</li>
+                <li>Take the outer leaves and leave the center to keep growing. You can pick again in a week or so.</li>
+                <li>Young leaves taste milder. Older leaves get sharper.</li>
+              </ul>
+            </div>
+            <div class="crop-block">
+              <h4>Watch out for</h4>
+              <ul>
+                <li><strong>Very spicy or bitter leaves:</strong> too hot, or the leaves are old. Pick younger leaves.</li>
+                <li><strong>Tiny holes in leaves:</strong> flea beetles. Pick off what you can and keep the soil moist.</li>
+                <li><strong>A tall flower stalk:</strong> the plant is going to seed. The flowers are edible, then sow again.</li>
+              </ul>
+            </div>
+          </div>
+
+          <p class="crop-tip"><strong>Tip:</strong> Pick young leaves for a milder flavor. Older leaves get sharper and spicier.</p>
+        </article>
+
+      </div>
+
+      <p class="crop-note fade-in">
+        General guidance for growing in containers in Connecticut. Timing and
+        sizes are approximate and vary with the variety, your window or yard,
+        and the weather.
+      </p>
 
     </div>
   </section>
